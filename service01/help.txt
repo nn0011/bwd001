@@ -1,0 +1,37 @@
+php notice_disconnect_generate.serv.php
+php printing_billing.serv.php
+php printing_billing_execute.serv.php
+php service_generate_billing1.serv.php
+php service_generate_due.serv.php
+php service_generate_reports.serv.php
+php service_reading_init.serv.php
+
+
+
+ledger_info
+
+php artisan make:migration  add_bill_num_01 --table=billing_mdls
+
+[Unit]
+Description=HWD Billing service
+After=mysqld.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+User=server
+ExecStart=/usr/bin/env php /home/server/Documents/hwd_main/service01/service_generate_billing1.serv.php
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+systemctl status hwd-billing
+systemctl status hwd-due
+systemctl status hwd-reports
+
+
+

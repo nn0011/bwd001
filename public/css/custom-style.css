@@ -1,0 +1,163 @@
+.login_page .panel-heading {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: .10em;
+    background: #14a99b;
+}
+
+.login_page > .col-md-8.col-md-offset-2 {
+    position: relative;
+    top: 17vh;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 500px;
+    float: unset;
+}
+
+.login_page .col-md-10 {
+    margin: 0 auto;
+    text-align: center;
+    float: unset;
+}
+
+.login_page button.btn.btn-primary {
+    width: 50%;
+    letter-spacing: .10em;
+    background-color: #666666;
+    border: 1px solid #666666;
+}
+
+.login_page button.btn.btn-primary:hover {
+    opacity: .8;
+}
+
+.login_page .panel-heading,
+.login_page .panel-body {    
+    background: #14a99b;
+    color: #fff;
+}
+
+.login_page .panel-default {
+    /*border-color: #d9eef6;*/
+    border-color: unset;
+   	padding: 15px 15px 20px;
+    background: #14a99b;
+}
+
+.login_page .form-group a {
+    color: #fff;
+}
+
+.login_page hr {
+    margin: 0 0 15px;
+    border-top: 1px solid #d3e0e9;
+}
+
+.login_page .panel-body {
+    padding: 42px 15px 15px;
+}
+
+.login_page .panel-heading {
+    padding-bottom: 24px;
+}
+
+.login_page .form-group input {
+    text-align: center;
+}
+
+.form-group input#username {
+    background-image: url(/hwd1/img/user_input.png);
+    background-repeat: no-repeat;
+    background-position: 5px;
+}
+
+.form-group input#password {
+    background-image: url(/hwd1/img/key_input.png);
+    background-position: 5px;
+    background-repeat: no-repeat;
+}
+
+.form-group input#username:focus,
+.form-group input#password:focus {
+    background-color: #d2fbf7;
+}
+
+#app .navbar-default{
+	background-color: #14a99b;
+}
+
+#app .navbar-header a, #app .nav.navbar-nav a {
+    color: #fff;
+    letter-spacing: .10em;
+}
+
+#app .navbar-default {
+    background-color: #14a99b;    
+    color: #fff;
+    display: none;
+}
+
+#app .navbar-header a, 
+#app .nav.navbar-nav a {
+    color: #fff;
+    letter-spacing: .10em;
+}
+
+/* html,
+body{
+    background-color: #12474f;
+} */
+
+.form-group input#username, 
+.form-group input#password {
+    letter-spacing: .10em;
+}
+
+#app span.help-block {
+    color: yellow;
+}
+
+.title.m-b-md {
+    text-transform: uppercase;
+    color: #14a99b;
+    font-weight: bold;
+    text-shadow: -3px 2px 1px rgba(150, 150, 150, 1);
+}
+
+
+.welcome_home .top-right.links a {
+    padding: 10px;
+    color: #14a99b;
+    font-weight: bold;
+    letter-spacing: 0.3rem;
+}
+
+
+.tab1x_v2 li{
+    margin-right: 0px;
+}
+.tab1x_v2 a{
+    padding: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.edit-but{
+    display: inline-block;
+    border: 1px solid;
+    padding: 0px 10px 0px 10px;
+    font-weight: bold;
+    font-size: 8px;
+    cursor: pointer;
+    background: red;
+    color: white;
+    border-radius: 10px;    
+}
+.edit-but.red{background: red;}
+.edit-but.blue{background: blue;}
+.edit-but.green{background: green;}
+.edit-but.grey{background: grey;}
+.edit-but.black{background: black;}
+.edit-but.yellow{background: yellow;}
+
+/* end */

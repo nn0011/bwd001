@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>HWD</title>
+
+<!--
+<script src="bootstrap/js/jquery-3.3.1.slim.min.js" ></script>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="bootstrap/js/popper.min.js" ></script>
+-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body class="cashier_page">
+  <div class="row main_row" style="height: 1245px;">
+	<div class="user_info">
+    <div class="user_details">
+        <span class="user_avatar"><img src="/hwd1/img/cashier_avatar.png"> <span class="username">Cashier Name</span></span> / <span class="logout_btn"> Logout</span>
+	</div>
+	 <div class="cashier_main">
+		<div class="cont_1">
+			<div class="filter_1">
+				<input type="text" name="accnt_no" id="accnt_no" placeholder="Account No.">
+				<input type="text" name="fn" id="fn" placeholder="First Name">
+				<img src="/hwd1/img/search.jpg">
+			</div>
+
+		</div> <!--end of cont -->
+		<div class="cashier_view">
+		    <table class="table10 table-bordered  table-hover">
+		        <tbody>
+		        <tr class="headings">
+		            <td width="10%">Account No.</td>
+		            <td width="10%">Meter No.</td>
+		            <td width="15%">Name</td>
+		            <td width="30%">Complete Address</td>
+		            <td width="5">Bill</td>
+		            <td width="5%">Status</td>
+		            <td width="5%">Action</td>
+		        </tr>
+		        <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status">Paid</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status">Paid</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status2">Disconnected</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status3">Unpaid</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status">Paid</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status">Paid</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status3">Unpaid</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status2">Disconnected</span></td>
+		            <td>View</td>
+		        </tr>
+		         <tr class="cursor1">
+					<td>00112233</td>
+		            <td>336611-123</td>
+		            <td>Agusa, Jimmy</td>
+		            <td>Lianga Street, Barangay, Surigao</td>
+		            <td>P 100.23</td>
+		            <td><span class="payment_status">Paid</span></td>
+		            <td>View</td>
+		        </tr>
+
+		    </tbody></table>
+		</div>
+		<div class="pagination_container">
+		 <ul class="pagination pagination-sm">
+		    <li><a href="#"><< Previous</a></li>
+		    <li><a href="#">1</a></li>
+		    <li><a href="#">2</a></li>
+		    <li><a href="#">3</a></li>
+		    <li><a href="#">4</a></li>
+		    <li><a href="#">5</a></li>
+		    <li><a href="#">Next >></a></li>
+		 </ul>
+		</div>
+	 </div> <!-- end of cashier main -->
+	</div>
+
+
+</div>
+
+<script src="js/js1.js"></script>
+<link rel="stylesheet" href="/hwd1/style.css">
+<link rel="stylesheet" href="/hwd1/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/hwd1/css/css-styles.css">
+<script src="hwd1/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+<div id="screenleapDiv" style="position:fixed;right:1px;bottom:1px;visibility:hidden;width:1px;height:1px" installed="true" sharing="false" eventlisteneradded="true"></div></body></html>

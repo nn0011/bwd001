@@ -1,0 +1,452 @@
+.user_details {
+    text-align: right;
+    font-size: 16px;
+    color: #108479;
+    max-width: 1140px;
+    margin: 30px auto 0;
+    padding: 0 25px;
+}
+
+.logout_btn {
+    font-weight: bold;
+    margin-left: 25px;
+}
+
+.account_info {
+    text-align: center;
+}
+
+.cashier_main .cont_1 {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.user_info {
+	width: 100%;
+    margin: 0 auto;
+    height: 85px;
+    background-color: #fff;
+    border-bottom: 1px solid #ece6e6;
+}
+
+.pagination_container {
+    display: inline-flex;
+}
+
+.cashier_page .filter_1 {
+    text-align: center;
+    padding: 50px;
+    font-size: 16px;
+}
+
+.payment_status2{
+	color:red;
+}
+
+.payment_status3{
+	color:blue;
+}
+
+.headings td,
+.cursor1 td {
+    text-align: center;
+}
+
+.pager:hover {
+    cursor: pointer;
+}
+
+.user_details span:hover {
+    cursor: pointer;
+}
+
+.logout_btn{
+	font-weight: bold;
+}
+
+.cashier_page .headings td {
+    text-align: center;
+}
+
+.cashier_page .filter_1 input:focus {
+    background: #f3f1f1;
+}
+
+.cashier_page .headings td,
+.cashier_page .cursor1 td{
+    font-size: 16px;
+}
+
+.cashier_page {
+    background: #f8f7f7;
+}
+
+.cashier_page .table10 tbody {
+    background-color: white;
+}
+
+.cashier_view {
+    margin: 25px auto 25px;
+}
+
+.user_avatar {
+    margin: 0 0 0 15px;
+}
+
+.user_avatar img {
+    margin-right: 25px;
+}
+
+.cashier_main {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.cashier_main button[onclick="get_acct_info222()"],
+.payment_method_2.water_bill table div button,
+button[onclick="add_new_invoice_form();"],
+button[onclick="cancel_receipt()"],
+.cashier_page .user_info a,
+button[onclick="save_none_weter()"],
+table.search_tab11 button,
+.generate_monthly_report_pop.padd40 button,
+.disconnection_pop button,
+.cont .disconnection_pop button{
+    color: #fff;
+    border: unset;
+    padding: 5px 10px;
+}
+
+.cashier_main button[onclick="get_acct_info222()"],
+.payment_method_2.water_bill table div button,
+button[onclick="add_new_invoice_form();"],
+.cashier_page .user_info a,
+button[onclick="save_none_weter()"],
+table.search_tab11 button,
+.generate_monthly_report_pop.padd40 button,
+.disconnection_pop button{
+    background-color: #108479;
+}
+
+.generate_monthly_report_pop.padd40 button:active{
+    background-color: #108479 !important;
+}
+
+.cashier_main button[onclick="get_acct_info222()"]:hover,
+.payment_method_2.water_bill table div button:hover,
+button[onclick="add_new_invoice_form();"]:hover,
+button[onclick="cancel_receipt()"]:hover,
+.cashier_page .user_info a:hover,
+button[onclick="save_none_weter()"]:hover,
+table.search_tab11 button:hover,
+.generate_monthly_report_pop.padd40 button:hover,
+.disconnection_pop button:hover{
+    box-shadow: 2px 2px #1ab7a8;
+    text-decoration: none;
+}
+
+.cashier_page .user_info .logout_btn a,
+button[onclick="cancel_receipt()"] {
+    background-color: #007bff;
+}
+
+.cashier_page .user_info .logout_btn a:hover,
+button[onclick="cancel_receipt()"]:hover{
+    box-shadow: 2px 2px #1378e4;
+    text-decoration: none;
+}
+
+select.bank_name11,
+select.bank_branches,
+span.select2-selection.select2-selection--single,
+select.nn_zone_id,
+select.mm_rep,
+select[onchange="non_water_pay_type_change()"]
+ {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    line-height: unset;
+}
+
+.payment_method_2.water_bill .payment_method_1 input {
+    transform: translateY(3px);
+    margin-right: 5px;
+}
+
+
+.receipt_cont1 .reciept_type_sty li input {
+    transform: translateY(1.5px);
+    margin-right: 5px;
+}
+
+.payment_method_2.water_bill table div button {
+    margin-bottom: 5px;
+}
+
+.back_1.pop101 .box1 .close_me {
+    height: 30px;
+    width: 30px;
+    /*transform: translate(10px, -25px);*/
+    color: #fff;
+    border: 1px solid #eee;
+}
+
+.cashier_main .tabs001 .mm li {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+.select2-selection .select2-selection__rendered {
+    line-height: 20px !important;
+}
+
+.client_info_2 .list_result1 li:hover {
+    border: 1px solid #288479;
+    color: #666;
+}
+
+.cashier_main .cont001 {
+    max-width: 970px;
+    width: 100%;
+    min-height: 800px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 20px 15px;
+}
+
+
+.cashier_main .tabs001 .mm ul li:hover a {
+    text-decoration: underline;
+}
+
+.cashier_main .tabs001 .mm ul li a {
+    font-size: 18px;
+    line-height: 2;
+    color: #288479;
+    position: relative;
+    top: -2px;
+}
+
+.cashier_main .tabs001 .mm ul li {
+    list-style-type: none;
+    list-style-image: url(/hwd1/img/next_16_green.png);
+}
+
+.cashier_main .tabs001 .mm ul li:hover {
+    list-style-image: url(/hwd1/img/next_16v2_green.png);
+    cursor: pointer;
+}
+
+.generate_monthly_report_pop.padd40 button:active,
+.disconnection_pop button:active,
+.cont .disconnection_pop button:hover{
+    background-color: #108479 !important;
+}
+
+.disconnection_pop select.zone11.form-control,
+.disconnection_pop select.period11.form-control {
+    height: 100%;
+}
+
+.cashier_main .date_find {
+    padding: 0 20px;
+}
+
+.cashier_main > div:first-child {
+    padding: 15px !important;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cashier_main .white_box1 .tabs001 {
+    padding: 0 0 0 20px;
+}
+
+.cashier_page .user_info{
+    height: 60px;
+}
+
+.cashier_page .user_details{
+  max-width: 1000px;
+  margin: 0 auto 0;
+  padding: 15px 0;
+  height: inherit;
+}
+
+.cashier_page .logo-head {
+    position: relative;
+    left: 10px;
+    top: -11px;
+}
+
+.cashier_page .logo-head img {
+    width: 50px;
+}
+
+.cashier-main-col {
+    width: 50%;
+    float: left;
+}
+
+.cashier_page .date_total_col {
+    padding-right: 25px;
+}
+
+.cashier-main-col.cashier-main-col1 {
+    padding-right: 25px;
+    width: 58.5%;
+    border-right: 1px solid #eee;
+}
+
+.cashier-main-col.cashier-main-col2 {
+    padding-left: 15px;
+    width:41.5%;
+}
+
+.account_break_down {
+    overflow-y: scroll;
+}
+
+.cashier_page .list_result1{
+    height: 450px;
+    width:350px;
+}
+
+.hr_4 {
+    display: none;
+}
+
+.cashier_page .search_tab11 td {
+    padding-right: 15px;
+}
+
+.box1 a.close_me {
+    transform: translate(0px,-30px);
+}
+
+.cashier-main-col .account_break_down {
+    height: 200px;
+    margin-top: 0;
+}
+
+.cashier_page .add_new_non_water_bill_cont textarea.nw_desc {
+    width: 100%;
+    min-height:100px;
+}
+
+.cashier_page .add_new_non_water_bill_cont div {
+    margin-bottom: 15px;
+}
+
+select[onchange="non_water_pay_type_change()"] {
+    width: 100%;
+    max-width: 300px;
+}
+
+.cashier_page .payment_method_1 li{
+    margin-right: 0;
+    display: block;
+}
+
+.cashier_page > .row {
+    margin: 0 auto;
+}
+
+.cashier_page .client_info_2 .list_result1 li {
+    font-size: 13px;
+}
+
+.cashier_page .break_down1{
+    width: 100%;
+}
+
+.cashier_page input.both_cash_amount,
+.cashier_page input.both_check_amount,
+.cashier_page input.ada_amount,
+.cashier_page input.both_check_num,
+.cashier_page select.bank_name11,
+.cashier_page select.bank_branches {
+    width: 135px;
+}
+
+.cashier_page .water_bill .half-1{
+  padding-right: 20px;
+}
+
+.cashier_page .withholding_val_txt,
+.cashier_page .amount_recieve {
+    margin-right: 0;
+}
+
+.cashier_page .withholding-tax1 {
+    width: 60%;
+}
+
+.cashier_page hr.hr_3 {
+    margin: 10px auto;
+}
+
+.cashier_page span.username > div {
+    width: 85px;
+    display: inline-block;
+    position: absolute;
+}
+
+.cashier_page .user_avatar {
+    margin: 0 100px 0 15px;
+    padding-left: 15px;
+    position: relative;
+    top: -4px;
+}
+
+.cashier_page .logout_btn {
+    float: right;
+    margin-right: 15px;
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+.cashier_page .user_avatar img {
+    margin-right: 0px;
+}
+
+.cashier_page .back_1 .box1{
+    width: 970px;
+}
+
+.cashier_page .cashier_main,
+.cashier_page div.user_details {
+    max-width: 1200px;
+}
+
+.cashier_page .cashier_main .cont001 {
+    max-width: inherit;
+}
+
+.cashier_page > .row.main_row {
+/*
+    height: 650px !important;
+*/
+}
+
+.cashier_page .cashier_main .white_box1 {
+    position: relative;
+    /*margin-top: -200px;*/
+}
+
+/**** end general code *****/

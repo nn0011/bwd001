@@ -1,0 +1,105 @@
+.view_accout_ledger22_cont{
+}
+
+.width_800 .box1{
+	width:1000px !important;
+	margin-top: 30px !important;
+}
+.con1{
+	padding:30px;
+}
+
+.scrol1111{
+	position:relative;
+	height:300px;
+	overflow:scroll;
+	
+	
+}
+
+.w1.w1{width: 75px;}
+.w2.w2{width: 70px;}
+.w3.w3{width: 60px;}
+.w4.w4{width: 75px;}
+.w5.w5{width: 50px;}
+.w6.w6{width: 50px;}
+.w7.w7{width: 40px;}
+.w8.w8{width: 60px;}
+.w9.w9{width: 60px;text-align: center !important;}
+.w10.w10{width: 50px;}
+.w11.w11{width: 50px;}
+.w12.w12{width: 50px;text-align: center !important;}
+.w13.w13{width: 70px;text-align: center !important;}
+.w14.w14{width: 70px;text-align: center !important;}
+    
+table.led01{
+	width:825px !important;
+	margin-top:0px !important;
+}
+.table10 td {
+    word-break: break-word;
+    font-size:12px !important;
+    line-height: 100% !important;
+}
+
+
+
+
+
+.acct_ledger_result .item_item{
+	cursor:pointer;
+}
+
+.pop101 .pop_view_info_table{
+	padding-top: 20px;
+}
+.pop101 .head_info .field1{
+    font-size: 18px;
+}
+.pop101 .head_info .field2{
+	font-size: 10px;
+}
+
+.pop101 table{
+	width:100%;
+}
+
+.pop101 td{
+	padding:5px;
+	border:1px solid #ccc;
+	vertical-align: top;
+}
+
+.pop101 table ul{
+	margin: 0;
+     padding: 0;
+     margin-left: 0px;
+	margin-bottom: 20px;
+     margin-top: 5px;
+}
+ul.item_list1 li{
+    border-bottom: 1px solid red;
+}
+.ledger_list1{
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+.pop101 table p{
+	padding:0;
+	margin:0;
+}
+
+
+.pop101 .ledger_list1 .item_list1{
+    background: rgba(18, 71, 79, 0.7);
+    padding: 15px;
+    color: white;
+}
+.pop101 .ledger_list1 .item_list1 span{
+	color: white;
+}
+
+li.no_border {
+    border: 0 !important;
+}

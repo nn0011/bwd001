@@ -1,0 +1,57 @@
+.cashier_page label:after {
+	content: ":";
+	position: absolute;
+	left: 150px;
+}
+
+.cashier_page .text_input {
+	position: absolute;
+	left: 160px;
+	width: 100%;
+	max-width: 500px;
+}
+
+.cashier_page .pop_table2 .text_input {
+	text-align: left;
+	padding: 0;
+	font-size: 13px;
+	width: 300px;
+}
+
+.cashier_page .pop_table2 .amnt {
+	float: right;
+}
+
+.cashier_page .payment_section {
+	text-align: center;
+	padding: 25px;
+	background-color: #ccc;
+}
+
+.cashier_page .payment_section button {
+	width: 100%;
+	max-width: 131px;
+	margin-bottom: 5px;
+}
+
+.cashier_page .payment_section .btn2 {
+	position: relative;
+	left: -2px;
+}
+
+.cashier_page .payment_section input {
+	margin-bottom: 5px;
+	background-image: url(../img/philippine-peso_16.png);
+	background-repeat: no-repeat;
+	background-position-y: 2px;
+	text-align: right;
+}
+
+.cashier_page .curr_bill_section span, 
+.cashier_page .curr_bill_section label {
+	color: red;
+}
+
+.cashier_page .cashier_view_info {
+	display: none;
+}

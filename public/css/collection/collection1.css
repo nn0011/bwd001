@@ -1,0 +1,71 @@
+.cashier_page .payment_section input{
+	width:100%;
+    	margin-bottom:15px;
+}
+.payment1_cont{
+	width: 140px;
+     margin: 0 auto;
+     text-align: left;
+}
+.payment1_cont small{
+	font-size:10px;
+}
+.payment1_cont input{
+	display: block;
+}
+
+.invoice_set1{
+	position: absolute;
+	left: 0;
+	padding-left: 30px;
+	padding-top: 40px;
+}
+.no_step::-webkit-inner-spin-button,
+.no_step::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no_step{
+	padding:3px;
+	border:0;
+}
+
+.cashier_page .payment_section{
+    position: relative;
+}
+.payment_loading1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 999;
+    color: white;
+    padding-top: 40px;
+    font-weight: bold;
+}
+
+li.no_border {
+    border: 0 !important;
+}
+
+
+
+@page { size: 200px 200px; } /* output size */
+body .sheet { width: 58mm; height: 100mm; } /* sheet size */
+@media print {
+		body { width: 200px; 200px}
+		.row.main_row{display:none;}
+
+		.print1{
+			display:inline-block !important;
+			border:1px solid #000;
+			width: 200px;
+			height:200px;
+			left:0;
+			position:absolute;
+		}
+} /* fix for Chrome */

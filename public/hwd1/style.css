@@ -1,0 +1,601 @@
+body{
+	background:#d9edf6;
+}
+
+.col-md-1, .col-md-2, .col-md-3, .col-md-4,
+.col-md-5, .col-md-6, .col-md-7, .col-md-8,
+.col-md-9, .col-md-10, .col-md-11, .col-md-12
+{
+	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    float: left;
+    border: 1px solid;	 
+}
+.row{
+	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #108479;
+    opacity: 1; /* Firefox */
+}
+
+.cursor1{
+	cursor:pointer;
+}
+.bldme{
+	font-weight:bold;
+}
+
+
+.tc1{
+	display:table-cell;
+	vertical-align:top;
+}
+
+.main_row{
+	display:table;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+
+.bgc1{
+	background-color:#12474f;
+}
+
+.main_left{
+	width:200px;
+}
+.head_logo1{
+	text-align:center;
+}
+.menu1 {
+    border: 0px solid #fff;
+    padding: 0;
+    margin: 0;
+    background: white;
+    margin-top: 30px;
+}
+.menu1 li {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.menu1 > li >  a{
+	color:#108479;
+}
+
+.menu1 > li.active,
+.menu1 > li:hover{
+	background-color:#108479;
+	cursor:pointer;
+}
+
+.menu1 > li.active > a,
+.menu1 > li:hover >  a{
+	color:white;
+}
+
+.main_right  .cont_1{
+    padding: 20px;
+}
+
+/********/
+/********/
+.box1_white{
+	border: 0px solid #ccc;
+	/*max-width: 1200px;*/
+	background: white;
+	padding: 15px;
+    padding-left: 0;
+    padding-right: 0;	
+}
+
+/***/
+/**/
+.tab1x{
+    margin: 0;
+    padding: 0;
+}
+.tab1x li{
+    border: 0px solid #000;
+    padding: 10px;
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-right: 10px;
+    border-radius: 5px 5px 0px 0px;
+    background: #12474f;
+	color: white;
+	cursor:pointer;
+}
+.tab1x li.active{
+    background: #fff;
+    color:#12474f;
+}
+
+.tab_cont_1 .tab_item{
+	display:none;
+	border:0px solid #ccc;
+}
+
+.table10{width:100%;}
+.table10 td{
+	font-size:12px;
+	padding:10px;
+    padding-top: 3px;
+    padding-bottom: 3px;    
+}
+.table10  .headings td{
+	color:white;
+	background:#108479;
+	text-align:left;
+    /*border-right: 1px solid #fff;*/
+    padding: 10px;
+    font-size: 9px !important;	
+	word-break: break-all;
+}
+
+.filter_1{
+    padding: 15px;
+}
+
+.filter_1 select,
+.filter_1  input[type="text"]{
+    border: 1px solid #108479;
+    padding: 10px;
+    color:#108479;
+    background:#e0e0e0;
+ }
+ .filter_1 select {
+    padding: 11px;
+	padding-bottom: 13px;    
+}
+  img.but_filter{
+	height: 40px;
+    margin-top: -2px;
+    margin-left: 5px; 
+ }
+ 
+ .pop_view_table1 td{
+    vertical-align: top;
+    border: 0px solid;
+    padding: 5px; 
+ }
+ .pop_view_info_table{
+	width: 430px;
+	border: 0px solid;
+	margin: 0 auto;
+	padding-top: 40px;
+	font-size:12px;
+ }
+ .pop_view_info_table_bill td{
+	border-bottom:1px solid #ccc;
+ }
+ 
+ 
+ .dec_box1{
+    display: inline-block;
+    border: 1px solid #108479;
+    padding: 0;
+    min-width: 300px;
+    min-height: 100px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 184%;
+     margin-right: 10px;    
+     vertical-align: top;
+}
+
+.dec_box_head{
+    background: #108479;
+    color: white;
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.dec_box_body{
+     padding:15px;
+}
+/**********/
+ul.item_list1 {
+    margin: 0;
+    padding: 0;
+}
+ul.item_list1 li {
+    border-bottom: 1px solid #ccc;
+    padding-top: 5px;
+    list-style: none;
+}
+.item_list1 span {
+    float: right;
+    color:#108479;
+    text-align:right;
+    width:50%;
+}
+span.rd{
+    color:red;
+}
+
+ul.item_box2{
+    width: 260px;
+    border: 0px solid #ccc;
+    padding: 20px;	
+}
+/**********/
+.clear_me{
+	clear:both;
+	display:block;
+}
+
+.tab1x_v2 li{
+	padding:0;
+	margin:0;
+}
+
+.tab1x_v2  a{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    border: 0px solid;
+    padding: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.tab1x_v2 .active  a{
+	color:#12474f;
+}
+ 
+ 
+.login_page > .col-md-8.col-md-offset-2 {
+    position: relative;
+    top: 17vh;    
+}
+
+
+table.table10.table-bordered.table-hover button,
+button[onclick="go_save_paya()"],
+button[onclick="pop_close()"],
+button[onclick="onclick_add_payable()"],
+button[type="submit"],
+.scroll1.acct_search_resu button,
+button[onclick="add_new_system_account_action()"],
+button[onclick="add_system_account_type()"],
+button[onclick="generate_new_reports()"],
+button[onclick="generate_report()"],
+button[onclick="generate_account_recievable_summary()"],
+button[onclick="generate_account_balance()"],
+button[onclick="get_monthly_ending_balance()"],
+button[onclick="sizes_manage1();"],
+.trig1,
+.form-style-9 button,
+button[onclick="save_new_size_1001()"],
+table.meter_size1 td button,
+button[onclick="clear_my_inputs()"],
+.tab_item.overdue table td a,
+.tab_item.disconnection button,
+button[onclick="findForPrint101()"],
+.tab_item.banks button, .tab_item.banks .clas_link,
+.tab_item.reading_period button,
+.tab_item.reading_period tr td a,
+.tab_item.forbilling tr td a,
+.initialize_reading_cont tr td button,
+.reading_for_billing_cont button,
+button[onclick="acct_list_clear_filter_all()"],
+button[onclick="application_approved()"],
+button[onclick="application_canceled()"],
+.view_accout_ledger22_cont .tabview .cmd_buts button,
+.add_billing_adjustment_cont .cmd_buts button,
+.view_accout_ledger22_cont .tab1.tabview2.tabview div a,
+.view_accout_ledger22_cont .tab1.tabview3.tabview div a,
+.tc1.main_right .tab_item.accounts .hide_print a,
+.pop_view_info_table.view_acct_info_pop button,
+.apply_penalty_for_billing_result button,
+.tab_item.account_list .pagination.pagination-sm li a,
+button[onclick="view_info_acct_modify_acct_pop_cancel()"],
+.tab_item.account_list a button,
+.ageing_report_cont1.cont11 button,
+.filter_1.acct_list1 button,
+button{
+    color: #fff;
+    border: unset;
+    padding: 5px 10px;
+}
+
+table.table10.table-bordered.table-hover button,
+button[onclick="go_save_paya()"],
+button[onclick="onclick_add_payable()"],
+button[type="submit"],
+button[onclick="add_new_system_account_action()"],
+button[onclick="add_system_account_type()"],
+button[onclick="generate_new_reports()"],
+button[onclick="generate_report()"],
+button[onclick="generate_account_recievable_summary()"],
+button[onclick="generate_account_balance()"],
+button[onclick="get_monthly_ending_balance()"],
+button[onclick="sizes_manage1();"],
+.form-style-9 button,
+.trig1,
+button[onclick="save_new_size_1001()"],
+table.meter_size1 td button,
+.tab_item.overdue table td a,
+.apply_penalty_for_billing_result button,
+.tab_item.disconnection button,
+button[onclick="findForPrint101()"],
+.tab_item.banks button, .tab_item.banks .clas_link,
+.tab_item.reading_period button,
+.tab_item.reading_period tr td a,
+.tab_item.forbilling tr td a,
+.initialize_reading_cont tr td button,
+.reading_for_billing_cont button,
+.tab_item.account_new button[type="submit"],
+.pop_view_info_table button[type="submit"],
+button[onclick="acct_list_clear_filter_all()"],
+.cmd1_but1 button[onclick="application_approved()"],
+.view_accout_ledger22_cont .tabview .cmd_buts button,
+.add_billing_adjustment_cont .cmd_buts button:first-child,
+.view_accout_ledger22_cont .tab1.tabview2.tabview div a,
+.view_accout_ledger22_cont .tab1.tabview3.tabview div a,
+.tc1.main_right .tab_item.accounts .hide_print a,
+.pop_view_info_table.view_acct_info_pop button,
+.tab_item.account_list .pagination.pagination-sm li a,
+.tab_item.account_list a button,
+.ageing_report_cont1.cont11 button,
+.filter_1.acct_list1 button,
+button{
+    background-color: #108479;
+}
+
+table.table10.table-bordered.table-hover button:hover,
+button[onclick="go_save_paya()"]:hover,
+button[onclick="onclick_add_payable()"]:hover,
+button[type="submit"]:hover,
+button[onclick="add_new_system_account_action()"]:hover,
+button[onclick="add_system_account_type()"]:hover,
+button[onclick="generate_new_reports()"]:hover,
+button[onclick="generate_report()"]:hover,
+button[onclick="generate_account_recievable_summary()"]:hover,
+button[onclick="generate_account_balance()"]:hover,
+button[onclick="get_monthly_ending_balance()"]:hover,
+button[onclick="sizes_manage1();"]:hover,
+.form-style-9 button:hover,
+.trig1:hover,
+button[onclick="save_new_size_1001()"]:hover,
+table.meter_size1 td button:hover,
+.tab_item.overdue table td a:hover,
+.apply_penalty_for_billing_result button:hover,
+.tab_item.disconnection button:hover,
+button[onclick="findForPrint101()"]:hover,
+.tab_item.banks button:hover, 
+.tab_item.banks .clas_link:hover,
+.tab_item.reading_period button:hover,
+.tab_item.reading_period tr td a:hover,
+.tab_item.forbilling tr td a:hover,
+.initialize_reading_cont tr td button:hover,
+.reading_for_billing_cont button:hover,
+.tab_item.account_new button[type="submit"]:hover,
+.pop_view_info_table button[type="submit"]:hover,
+button[onclick="acct_list_clear_filter_all()"]:hover,
+.cmd1_but1 button[onclick="application_approved()"]:hover,
+.view_accout_ledger22_cont .tabview .cmd_buts button:hover,
+.add_billing_adjustment_cont .cmd_buts button:first-child:hover,
+.view_accout_ledger22_cont .tab1.tabview2.tabview div a:hover,
+.view_accout_ledger22_cont .tab1.tabview3.tabview div a:hover,
+.tc1.main_right .tab_item.accounts .hide_print a:hover,
+.pop_view_info_table.view_acct_info_pop button:hover,
+.tab_item.account_list .pagination.pagination-sm li a:hover, 
+.tab_item.account_list a button:hover,
+.ageing_report_cont1.cont11 button:hover,
+.filter_1.acct_list1 button:hover,
+button:hover{
+    box-shadow: 2px 2px #1ab7a8;
+}
+
+button[onclick="pop_close()"],
+.scroll1.acct_search_resu button,
+button[onclick="clear_my_inputs()"],
+.tab_item.account_new button,
+.pop_view_info_table button,
+button[onclick="application_canceled()"],
+.add_billing_adjustment_cont .cmd_buts button:last-child,
+.pop_view_info_table.view_acct_info_pop button:last-child,
+button[onclick="view_info_acct_modify_acct_pop_cancel()"] {
+    background-color: #007bff;
+}
+
+button[onclick="pop_close()"]:hover,
+.scroll1.acct_search_resu button:hover,
+button[onclick="clear_my_inputs()"]:hover,
+.tab_item.account_new button:hover,
+.pop_view_info_table button:hover,
+button[onclick="application_canceled()"]:hover,
+.add_billing_adjustment_cont .cmd_buts button:last-child:hover,
+.pop_view_info_table.view_acct_info_pop button:last-child:hover,
+button[onclick="view_info_acct_modify_acct_pop_cancel()"]:hover{
+    box-shadow: 2px 2px #1378e4; 
+}
+
+.paya_h1,
+.box1 h2 {
+    text-transform: uppercase;
+}
+
+.back_1 .close_me {
+    color: #fff;
+    background-color: #108479;
+    height: 30px;
+    width: 30px;
+}
+
+.back_1 .close_me:hover,
+.tab_item.overdue table td a:hover,
+.tab_item.reading_period tr td a:hover,
+.tab_item.forbilling tr td a:hover {
+    text-decoration: none;
+}
+
+/*table.table10.table-bordered.table-hover tr.cursor1:hover td,
+table.table10.table-bordered.table-hover tr:hover td {
+    font-weight: 700;
+    font-size: 14px;
+}
+*/
+table.table10.table-bordered.table-hover tr.headings:hover td,
+.tab_item.account_list tr.headings:hover td{
+    color: white;
+    background: #108479;
+    text-align: left;  
+    padding: 10px;    
+    /*font-weight: 300;*/
+} 
+
+
+/*table.table10.table-bordered.table-hover tr td {
+    font-size: 14px !important;
+}*/
+
+select.sel_zone1,
+select.sel_month1,
+.sel2_zone1,
+select#discon_zone,
+select#search_period_all,
+select#search_zone_for_printing,
+select.discon_lenth {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.tab_item.overdue table tr.headings td,
+.tab_item.overdue table td,
+.tab_item.reading_period tr td,
+.tab_item.forbilling tr td {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.tab_item.banks span.clas_link {
+    width: auto;
+    transform: translateY(-12px);
+}
+
+.tab_item.account_list tr.headings td,
+.tab_item.account_type tr.headings td,
+.tab_item.account_status tr.headings td,
+.tab_item.zones tr.headings td  {
+    background-color: #108479;
+    color: #fff;
+}
+
+.tab_item.account_list tr td,
+.tab_item.account_type tr td,
+.tab_item.account_status tr td,
+.tab_item.zones tr td {
+    background-color: #fff;
+    color: #666;
+}
+
+.tab_item.account_list tr:hover td,
+.tab_item.account_type tr:hover td,
+.tab_item.account_status tr:hover td,
+.tab_item.zones tr:hover td,
+.tc1.main_right .tab_item.accounts .cursor1:hover td {
+    background-color: #eee;    
+}
+
+.tc1.main_right .tab_item.accounts .hide_print a button {
+    border: none;
+    background-color: unset;
+}
+
+
+.acct_ledger01 td{
+	font-size:10px !important;
+}
+
+.tab_item.dashboard11 ul li:hover a {
+    text-decoration: underline;
+}
+
+.tab_item.dashboard11 ul li a {
+    font-size: 18px;
+    line-height: 2;
+    color: #288479;
+    position: relative;
+    top: -2px;
+}
+
+.tab_item.dashboard11 ul li {
+    list-style-type: none;
+    list-style-image: url(/hwd1/img/next_16_green.png);
+}
+
+.tab_item.dashboard11 ul li:hover {
+    list-style-image: url(/hwd1/img/next_16v2_green.png);
+    cursor: pointer;
+}
+ /******
+.pop1{
+    position: fixed;
+    z-index: 9999999;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 71, 79, 0.7);
+    top: 0;
+    left: 0;
+ }
+.pop1  .box1{
+	background: white;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+/********/
+
+.rel1{
+    position:relative;
+}
+.but-right{
+    position: absolute;
+    top: 0;
+    right: 0;    
+}
+
+.edit-but{
+display: inline-block;
+    border: 1px solid;
+    padding: 3px 7px 3px 7px;
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    background: red;
+    color: white;
+    border-radius: 5px;   
+}
+.edit-but.red{background: red;}
+.edit-but.blue{background: blue;}
+.edit-but.green{background: green;}
+.edit-but.grey{background: grey;}
+.edit-but.black{background: black;}
+.edit-but.yellow{background: yellow;}

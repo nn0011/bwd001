@@ -1,0 +1,125 @@
+.rtxt{text-align:right !important;}
+.ltxt{text-align:left !important;}
+.red{color:red;}
+
+.new_cashier_cont{
+	padding:15px;
+}
+.back_1 .box1{
+	width:800px;
+	margin-top: 30px;
+}
+.method_list,
+.method_list li{
+	display:inline-block;
+}
+
+.cont001{
+	border:1px solid #ccc;
+	min-height:200px;
+	background:white;
+    width: 800px;
+    margin: 0 auto;
+	margin-top: 15px;
+	padding: 20px;
+}
+/*
+.select2-container{z-index:999999 !important;}
+*/
+
+.client_info_2{
+	margin-top:15px;
+}
+
+.client_info_2 .client_name{font-size: 24px;}
+
+.payment_method_1{
+	margin:0;
+	padding:0;
+}
+.payment_method_1 li{
+	list-style:none;
+	display:inline-block;
+	border:0px solid #ccc;
+    padding: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 15px;	
+    font-size:12px;
+}
+
+.tab_half{
+	width:100%;
+}
+.tab_half td{
+	width:50%;
+	padding: 3px;
+	vertical-align:top;
+}
+.amount_recieve{
+    border: 0;
+    margin-right: -13px;
+}
+.break_down1{
+    width: 70%;
+	float: right;
+	font-size: 14px;	
+}
+
+table.tab_half.break_down1 td {
+    border-bottom: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.contai11{
+	padding:20px;
+	padding-top:50px;
+}
+
+
+table.led01.acct_ledger01.table10 td {
+    border: 1px solid #ccc;
+}
+table.led01.acct_ledger01.table10 * {
+    font-size: 11px;
+}
+.back_1 .box1 {
+    width: 1200px;
+    margin-top: 30px;
+}
+.tabview_cmd{
+display:none;
+}
+.cmds001{
+display:none;
+}
+.back_1 .box1{
+}
+
+.account_break_down{
+	border:1px solid #ccc;
+	padding:15px;
+	margin-top:20px;
+}
+
+.contai11{
+	border:0px solid #ccc;
+	height:400px;
+	overflow:hidden;
+	margin-top: 50px;
+	overflow-y: scroll;
+	padding-top: 10px;
+}
+
+.no_border td{
+	border:0px !important;
+}
+
+.water_bill{
+}
+
+.cont222{
+	padding:30px;
+}
+
+

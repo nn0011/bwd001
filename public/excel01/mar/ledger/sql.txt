@@ -1,0 +1,32 @@
+LOAD DATA LOCAL INFILE '/home/server/Documents/hwd_main/public/excel01/mar/ledger/january_ledger.csv' 
+INTO TABLE export_billings
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES
+(A, B, C, D, E, F, G, H, I, J)
+
+
+LOAD DATA LOCAL INFILE '/Users/macbook/Documents/SQL/june_accounts.csv' 
+INTO TABLE export_billings
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES
+(@A, @B, @C, @D, @E, @F, @G, @H, @I, @J)
+
+
+
+
+
+
+
+LOAD DATA LOCAL INFILE '/Users/macbook/Documents/SQL/JUN_ALL_DATA.xlsx - Leger - May.csv' 
+INTO TABLE exp3
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES
+(A, B, C, D, E, F, G, H, I, J)
+
+

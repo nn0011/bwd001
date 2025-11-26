@@ -1,0 +1,94 @@
+hwd_ledger
+
+led_type
+led_title
+
+led_desc1
+led_desc2
+led_desc3
+
+led_data1
+led_data2
+led_data3
+
+led_key1
+led_key2
+led_key3
+
+led_date1
+led_date2
+led_date3
+
+status1
+status2
+
+
+
+php artisan make:model HwdLedger -m 
+php artisan make:controller HwdLedgerCtrl
+
+
+
+
+Add
+
+$new_led = new 
+$new_led->led_type = '';
+$new_led->led_title = '';
+$new_led->led_desc1 = '';
+$new_led->led_desc2 = '';
+$new_led->status = '';
+$new_led->led_date = '';
+
+
+-----
+led_type
+-----
+new_account
+     - New Application
+     - Application Approval Request
+     - Application Approval Approved
+     - Application Approval Denied
+     - New Application Billing
+     - New Application Payment
+     - New Application Connection Services request
+     - Connection service acknowledgement 
+     - Connection service processed
+     - connection service connected
+     - Initial reading 
+     - Account Activated 
+     - Request Reading for {Month Year}
+     - Reading for {Month Year}
+     - Billing for {Month Year}
+     - Acknowledgement of Billing  {Month Year}
+     - Collection
+     - Proccess Due
+     - Reading for {Month}
+     - Billing 
+     - Collection 
+     - Due
+     - Disconnection Notice
+     - Disconnection 
+     - Reconnection Request
+     - Reconnection Approval
+     - Reconnection Approved
+     - Reconnection Service Request
+     - Reconnection Service Process
+     - Initial Reading
+     - Reconnection Acknowledgement
+ 
+     
+          
+
+
+
+
+
+
+
+
+
+
+
+
+

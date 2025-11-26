@@ -1,0 +1,15 @@
+
+new_account_approval
+
+New account approval reqeust for:
+<br />
+Account # : {full_name}
+<br />
+Name : {full_name}
+<br />
+Address: {Addresss1}
+ 
+ 
+ New account approval reqeust for  Account # : {acct_num}
+
+===============

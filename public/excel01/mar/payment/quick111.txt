@@ -1,0 +1,21 @@
+SELECT * FROM `collections` 
+ORDER BY `payment_date` DESC
+
+
+
+SELECT * FROM `hwd_ledgers` 
+WHERE ctyp1='collection1'
+
+
+DELETE FROM `hwd_ledgers` 
+WHERE ctyp1='collection1'
+
+
+SELECT * FROM `ledger_datas` 
+WHERE led_type='payment'
+
+
+
+ORDER BY `id` DESC
+
+

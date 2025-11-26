@@ -1,0 +1,46 @@
+.rtxt{text-align:right !important;}
+.ltxt{text-align:left !important;}
+
+.back_1 .box1{
+	margin-top:30px;
+}
+
+.contai11{
+	padding:30px;
+	padding-top:50px;
+}
+.tab11{
+	border:0px solid #ccc;
+	width:100%;
+	
+}
+.tab11 td{
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+	width: 50%;
+}
+
+.date_find111{
+	padding:10px;
+}
+.summary_rep1{
+	background-color:#fff;
+	padding:15px;
+	min-height:100px;
+}
+
+.tab_half{
+	width:100%;
+}
+.tab_half td{
+	width:50%;
+	padding: 3px;
+	vertical-align:top;
+}
+
+.summary_rep1{
+	width:400px;
+}
+.summary_rep1 td{
+	border:1px solid #ccc;
+}
