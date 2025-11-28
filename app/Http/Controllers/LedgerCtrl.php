@@ -46,6 +46,7 @@ class LedgerCtrl extends Controller
 		{
 			$res1 = LedgerData::where('status','active')
 						->where('acct_id', $acct_id)
+						->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 								->orderBy('id', 'desc')
 									->get();
@@ -72,6 +73,7 @@ class LedgerCtrl extends Controller
 			$is_ok = LedgerData::find($leds_id);
 			$last1 = LedgerData::where('acct_id', $is_ok->acct_id)
 						->where('status', 'active')
+						->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 								->first();
@@ -101,6 +103,7 @@ class LedgerCtrl extends Controller
 			$is_ok = LedgerData::find($leds_id);
 			$last1 = LedgerData::where('acct_id', $is_ok->acct_id)
 						->where('status', 'active')
+						->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 								->first();
@@ -131,6 +134,7 @@ class LedgerCtrl extends Controller
 			$is_ok = LedgerData::find($leds_id);
 			$last1 = LedgerData::where('acct_id', $is_ok->acct_id)
 						->where('status', 'active')
+						->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 								->first();
@@ -180,6 +184,7 @@ class LedgerCtrl extends Controller
 
 			$led001 = LedgerData::where('acct_id', $acct_id)
 									->where('status', 'active')
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 									->orderBy('id', 'asc')
 									//~ ->orderBy('date01', 'asc')
@@ -233,11 +238,12 @@ class LedgerCtrl extends Controller
 			//~ $acct_id = @$_GET['acct_id'];
 			
 			$led001 = LedgerData::where('acct_id', $acct_id)
-						->where('status', 'active')
+							->where('status', 'active')
+							->orderBy('date01', 'asc')
 							->orderBy('zort1', 'asc')
-								->orderBy('id', 'asc')
-									->get();
-									
+							->orderBy('id', 'asc')
+							->get();
+								
 			
 			$ttl_bal = 0;
 			
@@ -376,8 +382,9 @@ class LedgerCtrl extends Controller
 
 			$led001 = LedgerData::where('acct_id', $acct_id)
 									->where('status', 'active')
-									->orderBy('zort1', 'asc')	
-									->orderBy('id', 'asc')									
+									->orderBy('date01', 'asc')
+									->orderBy('zort1', 'asc')
+									->orderBy('id', 'asc')								
 									//~ ->orderBy('id', 'asc')
 									//~ ->orderBy('date01', 'asc')
 									//~ ->orderBy('created_at', 'asc')
@@ -387,6 +394,12 @@ class LedgerCtrl extends Controller
 			
 			foreach($led001 as $l1)
 			{
+				if($l1->led_type == 'billing')
+				{
+					$l1->billing01; 
+					// ee($l1->toArray(), __FILE__, __LINE__);
+				}//
+
 				if($l1->led_type == 'billing' && $l1->discount <= 0)
 				{
 					$l1->ledger_info = str_replace('SENIOR CITIZEN','',$l1->ledger_info);
@@ -414,6 +427,8 @@ class LedgerCtrl extends Controller
 			print_r($led001->toArray());
 			die();						
 			*/
+
+			// ee($led001->toArray(), __FILE__, __LINE__);
 
 			$reading12 = Reading::where('account_id', $acct_id)
 										->where('status', 'active')
@@ -454,6 +469,7 @@ class LedgerCtrl extends Controller
 
 			$led001 = LedgerData::where('acct_id', $acct_id)
 									->where('status', 'active')
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 									->orderBy('id', 'asc')
 									//~ ->orderBy('date01', 'asc')
@@ -558,6 +574,7 @@ class LedgerCtrl extends Controller
 				//~ }
 
 				$led2 = LedgerData::where('acct_id', $acct_id)
+				->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 							->first();
@@ -597,6 +614,7 @@ class LedgerCtrl extends Controller
 
 				$led2 = LedgerData::where('acct_id', $acct_id)
 							->where('status', 'active')
+							->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 							->first();
@@ -642,6 +660,7 @@ class LedgerCtrl extends Controller
 							$query->orWhere('led_type', 'penalty');
 
 						})
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();
@@ -660,6 +679,7 @@ class LedgerCtrl extends Controller
 							$query->orWhere('led_type', 'penalty');
 
 						})
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->limit(2)
@@ -695,6 +715,7 @@ class LedgerCtrl extends Controller
 						$query->where('led_type', 'payment');
 						//~ $query->orWhere('led_type', 'payment');
 					})
+					->orderBy('date01', 'asc')
 					->orderBy('zort1', 'asc')
 					->orderBy('id', 'asc')
 					->get();
@@ -783,6 +804,7 @@ class LedgerCtrl extends Controller
 								$query->orWhere('led_type', 'penalty');
 								$query->orWhere('led_type', 'payment');
 							})
+							->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 							->first();
@@ -1034,6 +1056,7 @@ class LedgerCtrl extends Controller
 
 			$led001 = LedgerData::where('acct_id', $acct_id)
 									->where('status', 'active')
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 									->orderBy('id', 'asc')
 									->get();
@@ -1054,6 +1077,7 @@ class LedgerCtrl extends Controller
 
 			$led001 = LedgerData::where('acct_id', $acct_id)
 									->where('status', 'active')
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 									->orderBy('id', 'asc')
 									//~ ->orderBy('date01', 'asc')
@@ -1111,6 +1135,7 @@ class LedgerCtrl extends Controller
 
 			$led001 = LedgerData::where('acct_id', $acct_id)
 									->where('status', 'active')
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 									->orderBy('id', 'asc')
 									//~ ->orderBy('date01', 'asc')

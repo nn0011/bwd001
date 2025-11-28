@@ -93,7 +93,8 @@ class PenaltyCtrl extends Controller
 		$billings_raw = BillingMdl::where('period', $period)
 						 ->with(['ledger12' => function($query){
 							$query->where('led_type','!=', 'beginning');
-							$query->orderBy('zort1', 'desc')
+							$query->orderBy('date01', 'desc')
+									->orderBy('zort1', 'desc')
 										->orderBy('id', 'desc');
 						 }])
 						 ->with(['account'])

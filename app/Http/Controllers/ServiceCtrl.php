@@ -1007,6 +1007,7 @@ class ServiceCtrl extends Controller
 					->where('led_type','billing')
 					->where('status', 'active')
 					//~ ->orderBy('date01', 'desc')
+					->orderBy('date01', 'desc')					
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 					->first(); 
@@ -1020,6 +1021,7 @@ class ServiceCtrl extends Controller
 					where('acct_id', $rr->account1->id)
 					->where('status', 'active')
 					//~ ->orderBy('date01', 'desc')
+					->orderBy('date01', 'desc')
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 					->first();               
@@ -1231,6 +1233,7 @@ class ServiceCtrl extends Controller
 				$ledger1->where('led_type','!=', 'billing');
 				
 				$ledger1 = $ledger1
+							->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 							->first(); 

@@ -90,12 +90,14 @@ $EXEMP_ZONES = [];
 ///LEDGER ZORT01 START
 function ledger_zort01_desc(&$my_ledger)
 {
+	$my_ledger->orderBy('date01', 'desc');
 	$my_ledger->orderBy('zort1', 'desc');
 	$my_ledger->orderBy('id', 'desc');
 }
 
 function ledger_zort01_asc(&$my_ledger)
 {
+	$my_ledger->orderBy('date01', 'asc');
 	$my_ledger->orderBy('zort1', 'asc');
 	$my_ledger->orderBy('id', 'asc');
 }
@@ -247,6 +249,7 @@ function HELPER_get_PAST_collection_info($vv){
 			
 			$led1 = LedgerData::where('acct_id', $act1)
 						->where('status', 'active')
+							->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id', 'desc')
 								->get();
@@ -292,6 +295,7 @@ function HELPER_get_PAST_collection_info($vv){
 					$py_led01 = LedgerData::where('acct_id', $act1)
 									->where('date01','<=', $d1)
 										->where('status', 'active')
+											->orderBy('date01', 'desc')
 											->orderBy('zort1', 'desc')
 											->orderBy('id', 'desc')
 											//~ ->orderBy('date01', 'desc')
@@ -311,6 +315,7 @@ function HELPER_get_PAST_collection_info($vv){
 						->where('reff_no', $inv1)
 							->where('led_type', 'payment')
 								->where('status', 'active')
+								->orderBy('date01', 'desc')
 									->orderBy('zort1', 'desc')
 									->orderBy('id', 'desc')
 										->first();
@@ -327,6 +332,7 @@ function HELPER_get_PAST_collection_info($vv){
 									->where('id','<', $led_id_end)
 										->where('led_type', 'penalty')
 											->where('status', 'active')
+											->orderBy('date01', 'desc')
 											->orderBy('zort1', 'desc')
 												->orderBy('id', 'desc')
 													->limit(1)	
@@ -354,6 +360,7 @@ function HELPER_get_PAST_collection_info($vv){
 									->where('id','<', $led_id_end)
 										->whereIn('led_type', $pay_led_type)
 											->where('status', 'active')
+											->orderBy('date01', 'desc')
 											->orderBy('zort1', 'desc')
 												->orderBy('id', 'desc')
 													->get();			
@@ -662,6 +669,7 @@ function balance_breakdown_receipt_334($collect1)
 									$q1->orWhere('led_type', 'adjustment');
 								})
 								->where('status','active')
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 										->orderBy('id', 'asc')
 											->get();
@@ -794,6 +802,7 @@ function balance_breakdown_receipt_22($collect1)
 				})
 				->where('id', '<', $led_data1->id)
 				->where('status','active')
+				->orderBy('date01', 'desc')
 				->orderBy('zort1', 'desc')
 				->orderBy('id', 'desc')
 					->get();
@@ -897,6 +906,7 @@ function balance_breakdown_receipt($acct_id, $balance)
 						$query->orWhere('led_type', '=', 'adjustment');
 					})
 					->where('status','active')
+					->orderBy('date01', 'desc')
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 						->get();
@@ -997,6 +1007,7 @@ function balance_breakdown($acct_id, $balance)
 						$query->orWhere('led_type', '=', 'adjustment');
 					})
 					->where('status','active')
+					->orderBy('date01', 'desc')
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 						->get();
@@ -1447,6 +1458,7 @@ function curr_bill_v2($acct_id, $date01, $zone_id, $beg1)
 								})
 
 								//~ ->with('acct')
+								->orderBy('date01', 'asc')
 								->orderBy('zort1', 'asc')
 								->orderBy('id','asc')
 									->get();
@@ -1457,6 +1469,7 @@ function curr_bill_v2($acct_id, $date01, $zone_id, $beg1)
 								$q2->where('status','active');
 							})
 							->where('status','active')
+							->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 							->orderBy('id','desc')
 								->first();
@@ -2034,6 +2047,7 @@ function ageing_breakdown1($d0, $acct)
 						//~ $q->orWhere('led_type', 'payment');
 					})
 				->where('status','active')
+				->orderBy('date01', 'desc')
 				->orderBy('zort1', 'desc')
 				->orderBy('id', 'desc')
 					->first();
@@ -2050,6 +2064,7 @@ function ageing_breakdown1($d0, $acct)
 						//$q->orWhere('led_type', 'payment');
 					})
 				->where('status','active')
+				->orderBy('date01', 'desc')
 				->orderBy('zort1', 'desc')
 				->orderBy('id', 'desc')
 					->first();
@@ -2290,6 +2305,7 @@ function get_latest_billing_V1($acct_id, $coll_date=null)
 					$query->orWhere('led_type', '=', 'adjustment');
 				})
 				->where('status','active')
+				->orderBy('date01', 'desc')
 				->orderBy('zort1', 'desc')
 				->orderBy('id', 'desc')
 					->first();
@@ -2691,6 +2707,7 @@ function getLatestBillingV2($acct_id){
 			->where('led_type', 'billing')
 			->where('status', 'active')
 			->orderBy('period', 'desc')
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			  ->orderBy('id', 'desc')
 				->first();
@@ -2711,6 +2728,7 @@ function getLatestLeger($acct_id)
 	return LedgerData::where('acct_id', $acct_id)
 			->where('status', 'active')
 			->orderBy('period', 'desc')
+				->orderBy('date01', 'desc')
 				->orderBy('zort1', 'desc')
 				  ->orderBy('id', 'desc')
 				->first();
@@ -2722,6 +2740,7 @@ function getLatestLegerV2($acct_id)
 	return LedgerData::where('acct_id', $acct_id)
 			->where('status', 'active')
 			//~ ->orderBy('created_at', 'desc')
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			  ->orderBy('id', 'desc')
 				->first();
@@ -2733,6 +2752,7 @@ function getLatestLegerV3($acct_id)
 	return LedgerData::where('acct_id', $acct_id)
 			->where('status', 'active')
 			 ->where('led_type','!=', 'beginning')
+			 ->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			  ->orderBy('id', 'desc')
 				->first();

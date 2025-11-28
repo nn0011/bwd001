@@ -22,6 +22,7 @@ class CollectionService
 		$full_paid_made =  LedgerData::where('status', 'active')
 								->where('acct_id', $acct_id)
 								->where('ttl_bal','<=', '0' )
+								->orderBy('date01', 'asc')
 								->orderBy('zort1', 'desc')
 								->orderBy('id', 'desc')
 									->first();
@@ -29,6 +30,7 @@ class CollectionService
 		$remaining_payable_raw =  LedgerData::where('status', 'active')
 											->where('acct_id', $acct_id)
 											->with('payled_v2')
+											->orderBy('date01', 'asc')
 											->orderBy('zort1', 'asc')
 											->orderBy('id', 'asc');
 

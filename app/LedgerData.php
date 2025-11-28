@@ -82,8 +82,9 @@ class LedgerData extends Model
 	}
 
 	
-	function billing()
+	function billing01()
 	{
+		return $this->hasOne('App\BillingMdl', 'id', 'bill_id');
 	}
 
 

@@ -619,6 +619,7 @@ class CashierCtrl extends Controller
 		{
 			$ledger_data2 = LedgerData::where('status', 'active')
 								->where('acct_id', $aa->id)
+									->orderBy('date01', 'desc')
 									->orderBy('zort1', 'desc')
 									->orderBy('id', 'desc')
 										->limit(5)
@@ -1013,6 +1014,7 @@ class CashierCtrl extends Controller
 											$q1->orWhere('led_type', 'payment_cancel');
 											$q1->orWhere('led_type', 'payment_cr');
 										})
+										->orderBy('date01', 'desc')
 										->orderBy('zort1', 'desc')
 										->orderBy('id','desc')
 											->first();
@@ -1319,6 +1321,7 @@ class CashierCtrl extends Controller
 						$query->orWhere('led_type', '=', 'adjustment');
 					})
 					->where('status','active')
+					->orderBy('date01', 'desc')
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 						->first();
@@ -1329,6 +1332,7 @@ class CashierCtrl extends Controller
 						$query->orWhere('led_type', '=', 'beginning');
 					})
 					->where('status','active')
+					->orderBy('date01', 'desc')
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 						->first();
@@ -1341,6 +1345,7 @@ class CashierCtrl extends Controller
 						//~ $query->orWhere('led_type', '=', 'adjustment');
 					})
 					->where('status','active')
+					->orderBy('date01', 'desc')
 					->orderBy('zort1', 'desc')
 					->orderBy('id', 'desc')
 						->first();
@@ -1492,6 +1497,7 @@ class CashierCtrl extends Controller
 		$last_ledger = LedgerData::where('status', 'active')
 			->whereIn('led_type', ['payment', 'payment_cancel', 'payment_cr', 'cancel_cr'])		
 			->where('acct_id', $acct_id)
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			->orderBy('id', 'desc')
 			->first();
@@ -1959,6 +1965,7 @@ class CashierCtrl extends Controller
 		$ledger2 = LedgerData::
 						where('acct_id', $acct_id)
 						->where('status','active')
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						//~ ->orderBy('date01', 'desc')
 						->orderBy('id', 'desc')
@@ -2117,6 +2124,7 @@ class CashierCtrl extends Controller
 		 $ledger2 = LedgerData::
 						where('acct_id', $current_coll->cust_id)
 						->where('status','active')
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();
@@ -2538,6 +2546,7 @@ class CashierCtrl extends Controller
 		$ledger2 = LedgerData::
 						where('acct_id', @$acct_id)
 						->where('status','active')
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();
@@ -2894,6 +2903,7 @@ class CashierCtrl extends Controller
 
 		$led_1 = LedgerData::where('status','active')
 						->where('acct_id', $acct_id)
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();
@@ -2992,6 +3002,7 @@ class CashierCtrl extends Controller
 						where('acct_id', @$acct_id)
 						->where('status','active')
 						//~ ->orderBy('date01', 'desc')
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();
@@ -4157,6 +4168,7 @@ class CashierCtrl extends Controller
 		 $ledger2 = LedgerData::
 				where('acct_id', $customer_id)
 				->where('status','active')
+				->orderBy('date01', 'desc')
 				->orderBy('zort1', 'desc')
 				//~ ->orderBy('date01', 'desc')
 				->orderBy('id', 'desc')
@@ -4956,6 +4968,7 @@ class CashierCtrl extends Controller
 			$led_last_per = LedgerData::where('led_type', 'billing')
 								->where('acct_id', $vv->cust_id)
 								 ->where('status', 'active')
+								 ->orderBy('date01', 'desc')
 								->orderBy('zort1', 'desc')
 									 ->orderBy('id','DESC')
 										->first();
@@ -4978,6 +4991,7 @@ class CashierCtrl extends Controller
 								 ->with(['arrear2' => function($q1)use($period11){
 										$q1->where('period', 'like', $period11.'%');
 									 }])
+								->orderBy('date01', 'desc')
 								->orderBy('zort1', 'desc')
 								 ->orderBy('id','DESC')
 								 ->get()
@@ -5271,6 +5285,7 @@ class CashierCtrl extends Controller
 						->where('status','active')
 							->where('reff_no', $coll1->invoice_num)
 								->where('coll_id', @$coll1->new_coll_id)
+								->orderBy('date01', 'desc')
 									->orderBy('zort1', 'desc')
 										->orderBy('id', 'desc')
 											->first();
@@ -5287,6 +5302,7 @@ class CashierCtrl extends Controller
 					])
 					->where('id','<', $my_coll_led->id)
 						->where('status','active')
+							->orderBy('date01', 'asc')
 							->orderBy('zort1', 'asc')
 								->orderBy('id', 'asc')
 									->get();
@@ -5307,6 +5323,7 @@ class CashierCtrl extends Controller
 					])
 					->where('id','<', $my_coll_led->id)
 						->where('status','active')
+						->orderBy('date01', 'desc')
 							->orderBy('zort1', 'desc')
 								->orderBy('id', 'desc')
 									->get();

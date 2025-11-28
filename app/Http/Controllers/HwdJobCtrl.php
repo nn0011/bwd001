@@ -221,6 +221,7 @@ order by zort1 asc, id asc
 
 
 			$led002 	= LedgerData::where('acct_id', $acct_id)->where('status','active')
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();
@@ -389,6 +390,7 @@ order by zort1 asc, id asc
 
 		$payable_ledgers  = LedgerData::where('status', 'active')
 								->where('acct_id', $cid)
+									->orderBy('date01', 'asc')
 									->orderBy('zort1', 'asc')
 										->orderBy('id', 'asc')
 											->get();
@@ -533,6 +535,7 @@ order by zort1 asc, id asc
 										->where('acct_id', $acct_id)
 											// ->where('created_at', '<', $dd1)
 											->where('date01', '<', $dd1)
+												->orderBy('date01', 'asc')
 												->orderBy('zort1', 'asc')
 													->orderBy('id', 'asc')
 														->get();
@@ -556,6 +559,7 @@ order by zort1 asc, id asc
 		function update_zorting101($acct_id)
 		{
 			$led1 = LedgerData::where('acct_id',$acct_id)
+							->orderBy('date01', 'asc')
 							->orderBy('zort1', 'ASC')
 								->orderBy('id', 'ASC')
 									->get();

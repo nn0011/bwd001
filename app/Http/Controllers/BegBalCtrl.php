@@ -215,9 +215,91 @@ class BegBalCtrl extends Controller
 		</script>
 		";
 
-
 		ee($re_insert, __FILE__, __LINE__);
 
 	}//
+
+
+
+	function test0002()
+	{
+
+		// echo '<h1>PAUSED</h1>'; 
+		// die();
+
+		$rs1 = Accounts::
+				whereNull('temp01')
+				// whereNotNull('temp01')
+				// ->where('id', '678')
+				->with(['ledger_data2' => function($q1) {
+					$q1->where('status', 'active');
+					// $q1->orderBy('id', 'asc');
+					$q1->orderBy('date01', 'asc');
+					$q1->orderBy('id', 'asc');
+				}])
+				->orderBy('id', 'asc')
+				->limit(20)
+				->get();
+		
+		// ee($rs1->toArray(), __FILE__, __LINE__);
+
+
+		if( $rs1->count() <= 0 ) {
+			echo '<h1>DONE DONE</h1>'; 
+			die();
+		}
+
+		// echo $rs1->count();
+		// die();
+
+		$rs2 = Accounts::whereNull('temp01')->count();
+		echo '<h1> Remaining :: '.$rs2.'</h1>'; 
+
+			
+		// ee($rs1->toArray(), __FILE__, __LINE__);
+
+		// if(empty($rs1) )
+
+		foreach($rs1 as $k => $v)
+		{
+			## BEGINNING 
+			// $ttl_bal1 = 0; 
+			// foreach( $v->ledger_data2 as $k2 => $v2 ) {
+			// 	if( $v2->led_type == 'beginning' ) 
+			// 	{
+			// 		$ttl_bal1 = $v2->arrear;
+			// 		$v2->ttl_bal = $ttl_bal1;
+			// 		$v2->save();
+			// 		unset($v->ledger_data2[$K2]);
+			// 		break;
+			// 	}
+			// }
+
+			$ttl_bal1 = 0; 
+			foreach( $v->ledger_data2 as $k2 => $v2 ) {
+				$ttl_bal1 +=  $v2->debit01 - $v2->credit01;
+				$v2->ttl_bal = $ttl_bal1;
+				$v2->save();
+			}
+
+			$v->temp01 = 1;
+			$v->save();
+		}//
+
+		echo "
+		Ploading Please wait....
+		<script>
+		setTimeout(function(){
+			window.location.reload();
+		}, 500);		
+		</script>
+		";
+
+		ee($rs1->toArray(), __FILE__, __LINE__);
+
+
+
+	}//
+
 
 }

@@ -377,6 +377,7 @@ class CollectionService
 		return LedgerData::where('status', 'active')
 								->where('acct_id', $cid)
 								->where('date01','<', $date_now)
+								->orderBy('date01', 'desc')
 								->orderBy('zort1', 'desc')
 								->orderBy('id', 'desc')
 								->first();
@@ -441,6 +442,7 @@ class CollectionService
 								->where('date01','>', $year_end_date)
 								// ->where('id', '<', '767169')
 								->whereIn('led_type', ['billing', 'penalty'])
+								->orderBy('date01', 'asc')
 								->orderBy('zort1', 'asc')
 								->orderBy('id', 'asc')
 								->get();
@@ -535,6 +537,7 @@ class CollectionService
 	{
 		$ledger2 = LedgerData::where('acct_id', @$acct_id)
 						->where('status','active')
+						->orderBy('date01', 'desc')
 						->orderBy('zort1', 'desc')
 						->orderBy('id', 'desc')
 						->first();			
@@ -649,6 +652,7 @@ class CollectionService
 			->whereIn('led_type', ['payment', 'payment_cancel', 'payment_cr', 'cancel_cr'])		
 			->where('acct_id', $acct_id)
 			// ->where('coll_id', $coll_id)
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			->orderBy('id', 'desc')
 			->first();
@@ -667,6 +671,7 @@ class CollectionService
 				)									
 			")
 			->where('id', '!=', $last_ledger?$last_ledger->id:0)
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			->orderBy('id', 'desc')
 			->first();
@@ -758,6 +763,7 @@ $last_full_payment = DB::select( $sqlxxx );
 			->where('ledger_datas.id', '>', $last_full_payment_id)
 			->where('acct_id', $acct_id)
 			->with('wtax')
+			->orderBy('date01', 'asc')
 			->orderBy('zort1', 'asc')
 			->orderBy('id', 'asc');
 
@@ -848,6 +854,7 @@ $last_full_payment = DB::select( $sqlxxx );
 			// ->where('period','>', '2023-09-01')
 			->selectRaw('*, SUM(payment) sum_pay, SUM(bill_adj) sum_adj')
 			->groupBy('coll_id')
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			->orderBy('id', 'desc');
 			// ->get();		
@@ -1107,7 +1114,7 @@ $last_full_payment = DB::select( $sqlxxx );
                 'period' => $ll->period,
                 'amount' => $cost,
 				'other_payable' => $ll->nw_desc,
-				'beg_data1' => $ll->beg_data1,
+				'beg_data1' => @$ll->beg_data1,
 				
             ];
             
@@ -1256,6 +1263,7 @@ $last_full_payment = DB::select( $sqlxxx );
 
 		$LATEST_LEDGER = LedgerData::where('status','active')
 			->where('acct_id', $acct_id)
+			->orderBy('date01', 'desc')
 			->orderBy('zort1', 'desc')
 			->orderBy('id', 'desc')
 			->first();

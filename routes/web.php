@@ -54,6 +54,7 @@ Route::group(['prefix' => '/water-meter'], function(){
 ##############
 ##############
 Route::get('/test0001', 'BegBalCtrl@test0001');
+Route::get('/test0002', 'BegBalCtrl@test0002');
 ##############
 ##############
 ##############

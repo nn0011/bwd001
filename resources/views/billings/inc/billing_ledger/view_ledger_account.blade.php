@@ -264,8 +264,18 @@ $_SESSION["my_csrf"]=uniqid();
 				}
 				
 				if(!empty($ll->billing)){
-					$A_BILL  .= number_format($ll->billing, 2); 
+					// $A_BILL  .= number_format($ll->billing, 2); 
+					// $A_BILL  .= number_format($ll->debit01, 2); 
 				}
+
+				#############
+				#############
+				if($ll->led_type == 'billing') {
+					$A_BILL  = number_format($ll->billing01->curr_bill+$ll->billing01->bill_maintenance_fee, 2); 
+				}
+				#############
+				#############
+
 
 				if(!empty($ll->arrear)){
 					$A_ARR = number_format($ll->arrear, 2); 
