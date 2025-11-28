@@ -60,7 +60,7 @@ $all_cancel = array(
 		foreach($my_collection as $cc): 
 		
 			$acct = (object) $cc->accounts;
-			$full_name = substr($acct->acct_no.' '.$acct->lname.', '.$acct->fname,0,30);
+			$full_name = substr(@$acct->acct_no.' '.@$acct->lname.', '.@$acct->fname,0,30);
 
 				/****************/
 				/****************/

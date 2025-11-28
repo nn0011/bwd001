@@ -5950,11 +5950,17 @@ class CashierCtrl extends Controller
 
 		$dd = date('Y-m-d',strtotime(@$_GET['dd']));
 
-	
+		#########
+		#########
+		$user->id = 57;
+		#########
+		#########
 
 
 		$sql1 = "
-			SELECT * FROM (
+			SELECT 
+				TAB1.*, accounts.acct_no, accounts.lname, accounts.fname
+			FROM (
 				SELECT *, CAST(invoice_num as UNSIGNED) MMM FROM collections
 				WHERE id IN (
 					SELECT MAX(id) FROM collections 
@@ -5963,18 +5969,37 @@ class CashierCtrl extends Controller
 					GROUP BY invoice_num
 				)
 			) TAB1
+			LEFT JOIN accounts ON accounts.id=TAB1.cust_id
+
 			ORDER BY MMM ASC
 		";
 		$my_collection = DB::select($sql1, [$user->id]);
+		// ee($my_collection, __FILE__, __LINE__);
+
+
+		return view('collections.pdf.daily_col_rep_new_html4', compact('my_collection'));
+
+		return;
+		return;
+		return;
+		return;
+
+		echo $dd;
+		ee($my_collection, __FILE__, __LINE__);
 
 		$nw_or = ['cancel_cr_nw', 'cr_nw','nw_cancel','or_nw','cancel_cr', 'cancel_receipt'];		
 		
 		foreach($my_collection as $m1)
 		{
 			$my_accounts    = Accounts::selectRaw('acct_no, lname,fname')->where('id', $m1->cust_id)->first();
-			$m1->accounts   = $my_accounts->toArray();
+			if( $my_accounts ) {
+				$m1->accounts   = $my_accounts->toArray();
+			}else{
+				$m1->accounts   = [];
+			}
+
 			$m1->particular = [];
-			
+		
 			if(in_array($m1->status, $nw_or)){$m1->break_dd = []; continue;}
 
 			// $break_dd = feb_05_2021_daily_col_break($m1->cust_id, $m1->invoice_num, $dd);
@@ -5999,7 +6024,7 @@ class CashierCtrl extends Controller
 
 		// ee($my_collection,__FILE__, __LINE__);
 
-		return view('collections.pdf.daily_col_rep_new_html2', compact('my_collection', 'user', 'date1'));
+		return view('collections.pdf.daily_col_rep_new_html4', compact('my_collection', 'user', 'date1'));
 
 
 		

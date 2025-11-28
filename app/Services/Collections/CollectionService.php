@@ -1448,9 +1448,9 @@ $last_full_payment = DB::select( $sqlxxx );
 				$pycy['cur'] = 0;
 				$pycy['bil'] = 0;
 
-				if( $jdata['py_arrear'] > 0 ) { $pycy['py'] = $curr; }
-				elseif( $jdata['cy_arrear'] > 0 ) { $pycy['cy'] = $curr; }
-				else{ $pycy['cur'] = $curr; }
+				if( @$jdata['py_arrear'] > 0 ) { @$pycy['py'] = $curr; }
+				elseif( @$jdata['cy_arrear'] > 0 ) { @$pycy['cy'] = $curr; }
+				else{ @$pycy['cur'] = $curr; }
 			}
 		}
 		##########
