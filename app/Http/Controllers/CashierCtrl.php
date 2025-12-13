@@ -2,57 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
-use App\AccountMetas;
-use App\Accounts;
-use App\Zones;
-use App\HwdRequests;
-use App\Reading;
-use App\HwdOfficials;
-use App\BillingMdl;
-use App\BillingMeta;
-use App\Collection;
-use App\Invoice;
-use App\User;
-use App\OtherPayable;
-use App\Bank;
-use App\LedgerData;
-use App\report1;
-use App\HwdLedger;
-use App\Role;
-use App\TempCollection;
-use App\CollUpload;
-use App\Banks;
-use App\ReadingPeriod;
-use App\BillingDue;
-use App\BillingNw;
-use App\PayPenLed;
-use App\CollectLedger;
-use App\RemoteGenarate;
-
-
-use App\Services\Collections\CollectionService;
-use App\Services\Collections\CollectionReportService;
-
-
-
-
-use App\Http\Controllers\HwdLedgerCtrl;
-use App\Http\Controllers\LedgerCtrl;
-use App\Http\Controllers\HwdJobCtrl;
-
-
-use Mike42\Escpos\Printer;
-use Mike42\Escpos\PrintConnectors\FilePrintConnector;
-use Fpdf;
 use PDF;
+use Fpdf;
 use Excel;
 use NWBill;
+use App\Bank;
+
+use App\Role;
+use App\User;
+use App\Banks;
+use App\Zones;
+use App\Invoice;
+use App\Reading;
+use App\report1;
+use App\Accounts;
+use App\BillingNw;
+use App\HwdLedger;
+use App\PayPenLed;
+use App\BillingDue;
+use App\BillingMdl;
+use App\Collection;
+use App\CollUpload;
+use App\LedgerData;
+use App\BillingMeta;
+use App\HwdRequests;
+use App\AccountMetas;
+use App\HwdOfficials;
+use App\OtherPayable;
+use App\CollectLedger;
+use App\ReadingPeriod;
+use App\RemoteGenarate;
+use App\TempCollection;
+use Mike42\Escpos\Printer;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
+
+
+use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\HwdJobCtrl;
+use App\Http\Controllers\LedgerCtrl;
+
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HwdLedgerCtrl;
+use Illuminate\Support\Facades\Redirect;
+use App\Services\Collections\CollectionService;
+use App\Services\Collections\CollectionService2;
+use App\Services\Collections\CollectionReportService;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 
 class CashierCtrl extends Controller
 {
@@ -5927,10 +5928,476 @@ class CashierCtrl extends Controller
 
 	}
 
+	function Feb_05_2021_DailyCollectionReport__aha($list_type='daily', $cmd=0, $uid=0)
+	{
+
+		#######
+		$user = Auth::user();
+		if($cmd == 2){$user = User::find($uid);}
+		$collector_name = $user->name;
+		
+		#######
+		$date1 = @$_GET['dd'];
+		$zz = @$_GET['zz'];
+
+		#######
+		$dd = date('Y-m-d',strtotime(@$_GET['dd']));
+		$current_year = date('Y-01-01', strtotime($dd));
+		$current_month = date('Y-m-01', strtotime($dd));		
+
+		#######
+		$user->id = 57;
+
+		#######
+		$my_collection = CollectionService2::ledger_collection($dd, $user->id );
+
+		#######
+		foreach($my_collection as $k => $v)  {
+			$v->t1x = $led003 = json_decode($v->TTT, true);
+
+			#REMOVE if there is no Ledger
+			#REMOVE if there is no Ledger
+			if( empty( @$led003[0] ) ) {
+				continue;
+				ee($led003, __FILE__, __LINE__);
+			}
+
+			##Record credit and debit
+			$credit_v2 = 0 ; 
+			$debit_v2  = 0 ;
+			if($led003) {
+				foreach($led003 as $v2) 
+				{
+					$credit_v2 += $v2['credit01']; 
+					$debit_v2  += $v2['debit01']; 
+				}//
+			}
+			
+			// get previous overpayment 
+			$previous_over_payment = $led003[0]['ttl_bal'] - $led003[0]['debit01'];
+
+			// Include Credit debit and prev overpayment to resuls
+			$v->credit_debit = [$credit_v2, $debit_v2];
+			$v->prev_overpayment = $previous_over_payment;
+			
+			
+			
+		}//
+
+		ee($my_collection, __FILE__, __LINE__);
+
+
+
+	}//
+
 	function Feb_05_2021_DailyCollectionReport($list_type='daily', $cmd=0, $uid=0)
 	{
 
+		$date1 = @$_GET['dd'];
+		$zz = @$_GET['zz'];
 
+		$dd = date('Y-m-d',strtotime(@$_GET['dd']));
+		$current_year = date('Y-01-01', strtotime($dd));
+		$current_month = date('Y-m-01', strtotime($dd));
+
+
+
+		$sql1 = "
+		
+SELECT TAB1.*, CONCAT( AA.acct_no,' - ', AA.fname,' ', AA.lname) full_name FROM (
+SELECT 
+CC.id, CC.payment_date, CC.status,CC.invoice_num, CC.cust_id, CC.pay_type, CC.payment, CC.maintenancefee1, LLD.led_type, 
+		GROUP_CONCAT(LLD.led_type) led_type_grp, 
+		GROUP_CONCAT(LLD.credit01) credit_credit, 
+		LLD.id led_id
+
+##########################
+##########################
+##########################
+, (
+SELECT 
+	concat('[',
+    group_concat(json_object(
+						'id', LD88.id, 
+						'acct_id', LD88.acct_id,
+						'acct_num', LD88.acct_num,
+						'zone', RR.zone_id,
+						'date01', LD88.date01,
+						'bill_id', LD88.bill_id,
+						'reff_no', LD88.reff_no,
+						'led_type', LD88.led_type,
+						'debit01', LD88.debit01,
+						'credit01', LD88.credit01,
+						'ttl_bal', LD88.ttl_bal
+                      )), ']' ) GG
+FROM bayugan2.ledger_datas LD88
+LEFT JOIN bayugan2.readings RR ON  (RR.period=LD88.period AND  LD88.acct_id=RR.account_id AND  RR.status='active'  ) 
+
+WHERE LD88.id > (
+
+	SELECT LD89.id FROM bayugan2.ledger_datas LD89
+	WHERE
+	LD89.acct_id=CC.cust_id 
+	AND 
+	LD89.id < LLD.id
+	AND
+	LD89.ttl_bal <= 0
+	order by LD89.date01 desc, LD89.zort1 desc, LD89.id desc
+	LIMIT 1
+ ) 
+ 
+AND 
+	LD88.id < LLD.id
+ AND 
+ 	LD88.acct_id=CC.cust_id 
+    
+order by LD88.date01 asc, LD88.zort1 asc, LD88.id asc
+				) TTT
+#######################
+#######################
+#######################						
+
+
+
+FROM bayugan2.collections CC
+LEFT join bayugan2.ledger_datas LLD ON CC.id=LLD.coll_id
+WHERE 
+	CC.collector_id=57
+		AND
+	CC.payment_date = '2025-09-16'
+
+GROUP by invoice_num
+
+) TAB1
+
+LEFT JOIN accounts AA ON AA.id=TAB1.cust_id
+
+WHERE TAB1.id=130876
+#LIMIT 100
+
+
+		
+		";
+
+
+		$my_collection = DB::select($sql1);
+		// ee($my_collection, __FILE__, __LINE__);
+
+		$other_payable  = CollectionService2::get_other_payables();
+		$reading_period = CollectionService2::get_reading_period($dd);
+
+		// ee($reading_period, __FILE__, __LINE__);
+
+		$due_dates = [];
+		if(!empty($reading_period)) 
+		{
+			$reading_period = array_values($reading_period);
+			$due_dates = json_decode(@$reading_period[0]['due_dates2'], true);
+			// ee($due_dates, __FILE__, __LINE__);
+		}
+
+
+		foreach($my_collection as $k => $v) 
+		{
+
+			$wb_payment = 0;
+			$nwb_payment = 0;
+
+			$payment_label = array_filter(explode(',', $v->led_type_grp));
+			$payment_value = array_filter(explode(',', $v->credit_credit));
+			// ee($payment_label, __FILE__, __LINE__);
+
+
+
+			foreach( $payment_label as $k2 => $v2 ) 
+			{
+				if( $v2 == 'payment' ) {
+					$wb_payment += $payment_value[$k2];
+				}else{
+					$nwb_payment += @$payment_value[$k2];
+				}
+			}
+
+			$led003 = json_decode($v->TTT, true);
+			
+			if( is_array($led003) ) 
+			{
+
+				$curr_credit = 0;
+				$over_payment = @$led003[0]['ttl_bal'] - @$led003[0]['debit01'];
+				$curr_debit  = $over_payment;				
+
+				// ee($led003, __FILE__, __LINE__);
+				
+				// SEPARATE NWB and Water bill
+				$water_bill = [];
+				$non_water_bill = [];
+
+				foreach($led003 as $k2 => $v2) 
+				{
+					if( strpos($v2['led_type'], 'other') !== false ) {
+						$non_water_bill[] = $v2;
+					}else{
+						$water_bill[] = $v2;
+					}
+				}//
+
+				// ee1($non_water_bill, __FILE__, __LINE__);
+				// ee($water_bill, __FILE__, __LINE__);
+
+				
+				####### GET CREDIT AND DEBIT
+				foreach($water_bill as $k2 => $v2) 
+				{
+					if( $v2['credit01'] > 0 ) {
+						$curr_credit += $v2['credit01'];
+						unset($water_bill[$k2]);
+						continue;
+					}
+
+					if( $v2['debit01'] > 0 ) {
+						$curr_debit += $v2['debit01'];
+						$water_bill[$k2]['ttl_bal2'] = $curr_debit;
+					}
+				}//
+
+				####### REMOVED Existing PAYMENT
+				if( $curr_credit > 0 ) 
+				{
+					foreach($water_bill as $k2 => $v2) 
+					{
+						if( $v2['ttl_bal2'] >= $curr_credit ) {
+							$v2['debit01'] = $v2['ttl_bal2'] - $curr_credit;
+							$water_bill[$k2] = $v2;
+							break;
+						}else{
+							unset($water_bill[$k2]);
+						}
+					}
+
+					$ttl_bal2 = 0;
+
+					foreach($water_bill as $k2 => $v2) 
+					{
+						if( $v2['debit01'] > 0 ) {
+							$ttl_bal2 += $v2['debit01'];
+							$water_bill[$k2]['ttl_bal2'] = $ttl_bal2;
+						}
+					}
+				}//
+
+				// ee1($non_water_bill, __FILE__, __LINE__);
+				// ee($water_bill, __FILE__, __LINE__);
+
+				$orig_WB = $water_bill;
+
+				$ttl_bal = 0;
+				foreach($water_bill as $k2 => $v2) 
+				{
+					$ttl_bal += $v2['debit01'];
+					$v2['ttl_bal'] = $ttl_bal;
+					$v2['ttl_bal2'] = $ttl_bal;
+
+					$v2['due_date']  = $due_dates[$v2['zone']];
+					$v2['pay_typ002']  = 'current';
+
+					$due1 = strtotime($v2['due_date'].' 23:59:59');
+					 
+					$payment_date201 = strtotime($dd);
+					
+					if($due1 <= $payment_date201 ) {
+						$v2['pay_typ002']  = 'arrear';
+						$v2['pay_typ003']  = 'cy';
+						
+						if(strtotime($current_year) < $payment_date201 ) 
+						{
+							$v2['pay_typ003']  = 'py';
+						}
+					}
+
+					$water_bill[$k2] = $v2;
+				}//
+
+
+				// $WB_PAYMENT 
+				$my_payment = $wb_payment;
+				$my_break_down = [];
+				foreach($water_bill as $k2 => $v2) 
+				{
+					if( $v2['ttl_bal2'] > $my_payment ) 
+					{
+
+						$v2['debit01'] = ( $v2['debit01'] - ($v2['ttl_bal2'] - $my_payment) );
+						$my_break_down[] = $v2; 
+						$v2['debit01'] = (  ($v2['ttl_bal2'] - $my_payment) );
+
+						$water_bill[$k2] = $v2;
+
+						break;
+					}else{
+						$my_break_down[] = $v2; 
+						unset($water_bill[$k2]);
+					}
+				}
+
+
+
+				//NWB
+				//NWB
+				//NWB
+
+				// IF THERE IS A NWB
+				$my_break_down2 = [];
+
+				if( strpos($v->led_type_grp, 'other') !== false )
+				{
+
+						$curr_credit = 0;
+						$curr_debit  = 0;
+						####### GET CREDIT AND DEBIT
+						foreach($non_water_bill as $k2 => $v2) 
+						{
+							if( $v2['credit01'] > 0 ) {
+								$curr_credit += $v2['credit01'];
+								unset($non_water_bill[$k2]);
+								continue;
+							}
+
+							if( $v2['debit01'] > 0 ) {
+								$curr_debit += $v2['debit01'];
+								$non_water_bill[$k2]['ttl_bal2'] = $curr_debit;
+							}
+						}//				
+
+
+						####### REMOVED Existing PAYMENT
+						if( $curr_credit > 0 ) 
+						{
+							foreach($non_water_bill as $k2 => $v2) 
+							{
+								if( $v2['ttl_bal2'] >= $curr_credit ) {
+									$v2['debit01'] = $v2['ttl_bal2'] - $curr_credit;
+									$non_water_bill[$k2] = $v2;
+									break;
+								}else{
+									unset($non_water_bill[$k2]);
+								}
+							}
+
+							$ttl_bal2 = 0;
+
+							foreach($non_water_bill as $k2 => $v2) 
+							{
+								if( $v2['debit01'] > 0 ) {
+									$ttl_bal2 += $v2['debit01'];
+									$non_water_bill[$k2]['ttl_bal2'] = $ttl_bal2;
+								}
+							}
+						}//	
+
+						// ee($non_water_bill, __FILE__, __LINE__);
+
+						
+						// $WB_PAYMENT 
+						$my_payment = $nwb_payment;
+						foreach($non_water_bill as $k2 => $v2) 
+						{
+							if( $v2['ttl_bal2'] >= $my_payment ) 
+							{
+
+								$v2['debit01'] = ( $v2['debit01'] - ($v2['ttl_bal2'] - $my_payment) );
+								$my_break_down2[] = $v2; 
+								$v2['debit01'] = (  ($v2['ttl_bal2'] - $my_payment) );
+
+								$non_water_bill[$k2] = $v2;
+
+								break;
+							}else{
+								$my_break_down2[] = $v2; 
+								unset($non_water_bill[$k2]);
+							}
+						}
+
+
+						foreach($my_break_down2 as $k2 => $v2) 
+						{
+							$other_id = intval(preg_replace('/[^0-9]+/', '',  $v2['led_type'] ), 10);
+							$typ1 = @$other_payable[$other_id]['glsl_typ'];
+							$v2['glsl_typ'] = $typ1;
+							$my_break_down2[$k2] = $v2; 
+						}
+
+
+
+				}//
+
+				//NWB
+				//NWB
+				//NWB
+
+
+				// echo $nwb_payment;
+				// ee($non_water_bill, __FILE__, __LINE__);
+
+
+				// $v->exist_credit = $curr_credit;
+				$v->payment_brk = [$wb_payment, $nwb_payment];
+				$v->t1x = [$orig_WB, $non_water_bill];
+
+				#############
+				#############
+				
+				$v->wb_breakdown  = $my_break_down;
+				$v->nwb_breakdown = $my_break_down2;
+				
+				$nwb_temp = [0,0,0,0];
+				if( !empty($my_break_down2) ) 
+				{
+					foreach($my_break_down2 as $k2 => $v2) 
+					{
+						$nwb_temp[$v2['glsl_typ']] += $v2['debit01'];
+					}
+				}
+				$v->nwb_temp_var = $nwb_temp;
+				#############
+				#############
+				// $current_date = 
+				// $wb_payment
+				$wb_temp = [ 
+							'curr' => 0, 
+							'cy' => 0, 
+							'py' => 0,
+							'tax' => 0
+						];
+				if( !empty($my_break_down) ) 
+				{
+					foreach($my_break_down as $k2 => $v2) 
+					{
+						if( $v2['pay_typ002'] == 'current' ) {
+							$wb_temp['curr'] += $v2['debit01'];
+						}else{
+							$wb_temp[$v2['pay_typ003']] += $v2['debit01'];
+						}
+					}
+				}
+
+				$v->wb_temp_var = $wb_temp;
+				#############
+				#############
+			}
+		}
+
+		// $due_dates
+		 ee($my_collection, __FILE__, __LINE__);
+		// ee($my_collection, __FILE__, __LINE__);
+
+		return view('collections.pdf.daily_col_rep_new_html5', compact('my_collection'));
+
+
+	}//
+
+	function Feb_05_2021_DailyCollectionReport_GGG($list_type='daily', $cmd=0, $uid=0)
+	{
 
 		/***/
 		/***/
@@ -5949,6 +6416,13 @@ class CashierCtrl extends Controller
 		$zz = @$_GET['zz'];
 
 		$dd = date('Y-m-d',strtotime(@$_GET['dd']));
+		$current_year = date('Y-01-01', strtotime($dd));
+		$current_month = date('Y-m-01', strtotime($dd));
+
+		// echo $current_year;
+		// echo $dd;
+		// dd($dd, );
+
 
 		#########
 		#########
@@ -5958,8 +6432,64 @@ class CashierCtrl extends Controller
 
 
 		$sql1 = "
+
+
+SELECT *
+	, GROUP_CONCAT(led_type) led_type_g, GROUP_CONCAT(credit01) led_amt
+FROM 
+
+(		
 			SELECT 
-				TAB1.*, accounts.acct_no, accounts.lname, accounts.fname
+				TAB1.*, accounts.acct_no, accounts.lname, accounts.fname, LD1.id led_id,  LD1.led_type,  LD1.credit01
+
+##########################
+##########################
+##########################
+, (
+##set @acct_id = 5316;
+##set @coll_led_id = 433273;
+
+SELECT 
+	concat('[',
+    group_concat(json_object(
+						'id',id, 
+						'acct_id', acct_id,
+						'acct_num', acct_num,
+						'date01', date01,
+						'bill_id', bill_id,
+						'reff_no', reff_no,
+						'led_type', led_type,
+						'debit01', debit01,
+						'credit01', credit01,
+						'ttl_bal', ttl_bal
+                      )), ']' ) GG
+############id, acct_id, acct_num , date01 , bill_id, reff_no, led_type, debit01, credit01, ttl_bal  
+FROM bayugan2.ledger_datas
+
+WHERE id > (
+
+	SELECT id FROM bayugan2.ledger_datas
+	WHERE
+	acct_id=TAB1.cust_id 
+	AND 
+	id < LD1.id
+	AND
+	ttl_bal <= 0
+	order by date01 desc, zort1 desc, id desc
+	LIMIT 1
+ ) 
+ 
+AND 
+	id < LD1.id
+ AND 
+ 	acct_id=TAB1.cust_id 
+    
+order by date01 asc, zort1 asc, id asc
+				) TTT
+#######################
+#######################
+#######################						
+
 			FROM (
 				SELECT *, CAST(invoice_num as UNSIGNED) MMM FROM collections
 				WHERE id IN (
@@ -5969,16 +6499,262 @@ class CashierCtrl extends Controller
 					GROUP BY invoice_num
 				)
 			) TAB1
-			LEFT JOIN accounts ON accounts.id=TAB1.cust_id
 
-			ORDER BY MMM ASC
+			LEFT JOIN accounts ON accounts.id=TAB1.cust_id
+			LEFT JOIN ledger_datas LD1 ON ( TAB1.id=LD1.coll_id AND LD1.payment > 0 )
+
+			####WHERE cust_id='11838'
+			WHERE cust_id='5111'
+
+			######GROUP BY TAB1.invoice_num
+) TAB5
+
+GROUP BY TAB5.invoice_num
+
+
+ORDER BY TAB5.MMM ASC
+
+
+
+
 		";
+
 		$my_collection = DB::select($sql1, [$user->id]);
+
 		// ee($my_collection, __FILE__, __LINE__);
+
+
+		foreach($my_collection as $k => $v) 
+		{
+			$v->t1x = $led003 = json_decode($v->TTT, true);
+
+				
+			if( strpos($v->led_type, 'other_') !== false ) 
+			{
+				foreach($led003 as $k2 => $v2) 
+				{
+					if( $v->invoice_num != $v2['reff_no'] ) 
+					{
+						unset($led003[$k2]);
+					}
+				}
+
+				$v->t1x = $led003 = array_values($led003);
+			}				
+
+			// REMOVE if there is no Ledger
+			if( empty( @$led003[0] )  )
+			{
+				continue;
+				ee($led003, __FILE__, __LINE__);
+			}			
+
+			// Record credit and debit
+			$credit_v2 = 0 ; 
+			$debit_v2  = 0 ;
+			if($led003) {
+				foreach($led003 as $v2) 
+				{
+					$credit_v2 += $v2['credit01']; 
+					$debit_v2  += $v2['debit01']; 
+				}//
+			}
+
+
+			// get previous overpayment 
+			$previous_over_payment = $led003[0]['ttl_bal'] - $led003[0]['debit01'];
+
+			// Include Credit debit and prev overpayment to resuls
+			$v->credit_debit = [$credit_v2, $debit_v2];
+			$v->prev_overpayment = $previous_over_payment;
+
+			// process breakdown
+			$new_arr1 = [];
+			$total_payment = $credit_v2 + abs($previous_over_payment) ;
+			foreach( $led003 as $k2 => $v2 ) 
+			{
+
+
+				//
+				// $current_year
+				// $current_month
+				if( strtotime($v2['date01']) >= strtotime($current_month) ) 
+				{
+					$led003[$k2]['typ3'] = 'current';
+				}
+				elseif( strtotime($v2['date01']) >= strtotime($current_year) ) 
+				{
+					$led003[$k2]['typ3'] = 'cy';
+				}
+				else{
+					$led003[$k2]['typ3'] = 'py';
+				}
+				
+				// if( strpos($v2['led_type'], 'others_') !== false ) {
+				// 		// unset($led003[$k2]);
+				// }	
+
+				// echo $total_payment.'<br />';
+				if( $total_payment <= 0 ) {
+					$new_arr1[] = $led003[$k2];
+					continue;
+				}
+
+				// Penalty and billing only
+				if( in_array($v2['led_type'], ['billing', 'penalty']) ) 
+				{
+					
+					// only if exact payment
+					if( ($total_payment - $v2['debit01'] ) >= 0 ) {
+						$total_payment -= $v2['debit01'];						
+						unset($led003[$k2]);
+						continue;
+					}else{
+						//deduct the debt
+						// var_dump($total_payment);
+						// die();
+						$paymenow =  $v2['debit01'] - $total_payment;
+						if( $paymenow <= 0 ) {
+							$total_payment = $total_payment - $v2['debit01'];						
+						}else{
+							$led003[$k2]['debit01'] = $paymenow;
+							$total_payment = 0;
+						}
+					}
+
+
+
+				}else{
+					unset($led003[$k2]);
+					continue;
+				}
+
+
+
+
+				// re record
+				$new_arr1[] = $led003[$k2];
+			}//
+
+			$v->pre_payment = $new_arr1;
+
+			// check payment
+			$last_item_array = end($new_arr1);
+
+			if( !empty( @$last_item_array ) ) 
+			{
+				// Payment is Larger than utang
+				if( $last_item_array['ttl_bal'] <=  $v->payment ) 
+				{
+					foreach( $new_arr1 as $k2 => $v2 ) 
+					{
+						$v2['payed'] = $v2['debit01'];
+						$new_arr1[$k2] = $v2;
+					}
+
+
+					$v->final_breadown_array = $new_arr1;
+					$v->payment_tt  = $v->payment;
+				}
+				// Utang is larger than payment
+				else
+				{
+					// Isa-isahon ang utang ang paigoan
+					$ff_payment = $v->payment;
+					$new_final  = [];
+					foreach( $new_arr1 as $k2 => $v2 ) 
+					{
+						// DAKO SI UTANG
+						if( $v2['debit01'] > $ff_payment) {
+							$v2['payed'] = $ff_payment;
+							$new_final[] = $v2; 
+							break;
+						}else{
+							$v2['payed'] = $v2['debit01'];
+							$new_final[] = $v2; 
+							$ff_payment -= $v2['debit01'];
+						}
+					}
+
+					$v->final_breadown_array = $new_final;
+					$v->payment_tt  = $v->payment;
+
+				}
+			}
+
+		}//
+
+		$other_payable = CollectionService2::get_other_payables();
+
+		foreach($my_collection as $k => $v) 
+		{	
+			if( strpos($v->led_type_g, 'other_') !== false ) 
+			{
+				$v->led_typ01 = 'other';
+				$other_temp1 = array_filter(explode(',', $v->led_type_g));
+				$other_temp1_amt = array_filter(explode(',', $v->led_amt));
+				
+				$other_temp1_code = [];
+				$other_temp1_type = [];
+
+				foreach($other_temp1 as $k2 => $v2) {
+					$other_id = intval(preg_replace('/[^0-9]+/', '', $v2), 10);
+					if( $other_id > 0 ) {
+						$other_temp1_code[] = @$other_payable[$other_id]['glsl_code'];
+						$other_temp1_type[] = @$other_payable[$other_id]['glsl_typ'];
+					}
+				}
+
+				$v->other_code_label = implode('<br />', $other_temp1_code);
+				$v->other_code_dat = $other_temp1_code;
+				$v->other_amt = $other_temp1_amt;
+				$v->other_typ = $other_temp1_type;
+			}
+
+
+			/*
+			$id1 = intval(preg_replace('/[^0-9]+/', '', $v->led_type), 10);
+			if( $id1 > 0 ) 
+			{
+				$v->led_typ01 = 'other';
+				$other_temp1 = array_filter(explode(',', $v->led_type_g));
+				$other_temp1_amt = array_filter(explode(',', $v->led_amt));
+				
+				$other_temp1_code = [];
+				$other_temp1_type = [];
+
+				foreach($other_temp1 as $k2 => $v2) {
+					$other_id = intval(preg_replace('/[^0-9]+/', '', $v2), 10);
+					if( $other_id > 0 ) {
+						$other_temp1_code[] = @$other_payable[$other_id]['glsl_code'];
+						$other_temp1_type[] = @$other_payable[$other_id]['glsl_typ'];
+					}
+				}
+
+				$v->other_code_label = implode('<br />', $other_temp1_code);
+				$v->other_code_dat = $other_temp1_code;
+				$v->other_amt = $other_temp1_amt;
+				$v->other_typ = $other_temp1_type;
+			}
+			*/
+
+
+		}//
+		
+		// CollectionService2::get_other_payables();
+
+		// echo $dd;
+		// ee($other_payable, __FILE__, __LINE__);
+		ee($my_collection, __FILE__, __LINE__);
 
 
 		return view('collections.pdf.daily_col_rep_new_html4', compact('my_collection'));
 
+
+		return;
+		return;
+		return;
+		return;
 		return;
 		return;
 		return;

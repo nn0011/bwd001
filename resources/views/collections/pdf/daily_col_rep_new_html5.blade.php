@@ -31,7 +31,7 @@ $all_cancel = array(
 		<td colspan="7">
 			Daily Collection Report
 			<br />
-			<?php  echo date('l, M d, Y', strtotime(@$date1)); ?> 	
+			<?php  //echo date('l, M d, Y', strtotime(@$date1)); ?> 	
 		</td>
 		<td>
 			<span class="RRR111"></span>
@@ -63,37 +63,24 @@ $all_cancel = array(
 		<?php 
 		
 		$ttl001 = 0;
+		$indx=1;
 		foreach($my_collection as $cc): 
 
 
 			$ttl001 += $cc->payment;
 
-			// $acct = (object) $cc->accounts;
-			$full_name = substr(@$cc->acct_no.' '.@$cc->lname.', '.@$cc->fname,0,30);
+			$n1 = @$cc->wb_temp_var;
 
-			$n1 = [];
-			if(! empty(@$cc->final_breadown_array) )
-			{
-				foreach( @$cc->final_breadown_array as $k => $v ) 
-				{
-					if( empty(@$n1[$v['typ3']]) ) { @$n1[$v['typ3']] = $v['payed']; continue; }
-					// $v['typ3']
-					@$n1[$v['typ3']] += $v['payed'];
+			// $other_val = 0;
+			// $other_code = '';
 
-				}//
-			}
-
-
-			$other_val = 0;
-			$other_code = '';
-
-			if( $cc->led_typ01 == 'other' ) {
-				$n1['current'] = 0;
-				$n1['py'] = 0;
-				$n1['cy'] = 0;
-				$other_val = $cc->payment;
-				$other_code = $cc->other_code_label;
-			}
+			// if( $cc->led_typ01 == 'other' ) {
+			// 	$n1['current'] = 0;
+			// 	$n1['py'] = 0;
+			// 	$n1['cy'] = 0;
+			// 	$other_val = $cc->payment;
+			// 	$other_code = $cc->other_code_label;
+			// }
 
 			?>
 			
@@ -106,27 +93,27 @@ $all_cancel = array(
 					
 					<?php echo $my_or111; ?>
 				</td>
-				<td><?php echo $full_name;
+				<td style="width:500px"><?php echo substr($cc->full_name,0 , 30).' - '.$cc->id;
 				// .$tax_label.$check_label; ?></td>
 				<td class="ll"><?php //echo implode( '/', $cc->particular) ?></td>
 				<td class="rr"><?php echo number_format($cc->payment,2); ?></td>
-				<td class="rr"><?php echo @$n1['current']!=0?number_format(@$n1['current'],2):''; ?></td>
+				<td class="rr"><?php echo @$n1['curr']!=0?number_format(@$n1['curr'],2):''; ?></td>
 				<td class="rr"><?php echo @$n1['cy']!=0?number_format(@$n1['cy'],2):''; ?></td>
 				<td class="rr"><?php echo @$n1['py']!=0?number_format(@$n1['py'],2):''; ?></td>
 				<td class="rr"><?php  ?></td>
 				<td class="rr"><?php  ?></td>
-				<td class="cc"><?php echo $other_code; ?></td>
+				<td class="cc"><?php //echo $other_code; ?></td>
 				<td class="rr"><?php  ?></td>
 				<td class="rr"><?php  ?></td>
 				<td class="rr"><?php  ?></td>
 				<td class="rr"><?php  ?></td>
-				<td class="rr"><?php echo @$other_val!=0?number_format(@$other_val,2):''; ?></td>
+				<td class="rr"><?php echo @$cc->nwb_temp_var[2]!=0?number_format(@$cc->nwb_temp_var[2],2):''; ?></td>
 				<td class="rr"><?php  ?></td>
 			</tr>
 			<?php 
 		
 		
-	
+	$indx++;
 	endforeach; 
 	
 ?>
@@ -135,7 +122,7 @@ $all_cancel = array(
 
 
 <tr class="bord_all">
-	<td colspan="3">SUB TOTAL</td>
+	<td colspan="3">SUB TOTAL : ( <?php echo $indx-1; ?>)</td>
 	<td class="rr"><?php echo number_format($ttl001,2); ?></td>
 	<td class="rr"><?php //echo number_format($ttl_current,2); ?></td>
 	<td class="rr"><?php //echo number_format($ttl_cy,2); ?></td>

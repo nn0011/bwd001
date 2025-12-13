@@ -1505,7 +1505,5 @@ $last_full_payment = DB::select( $sqlxxx );
 		
 	}
     
-}    
-
-
+}
 
